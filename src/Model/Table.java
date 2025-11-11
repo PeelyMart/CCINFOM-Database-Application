@@ -6,7 +6,10 @@ public class Table {
     private int capacity;
     private String tableStatus;
 
-    // Constructor
+    // Constructors
+    public Table() {
+    }
+
     public Table(int tableId, int capacity, String tableStatus) {
         this.tableId = tableId;
         this.capacity = capacity;

@@ -1,31 +1,37 @@
 package Model;
 
 public class MenuItem {
-  private int menuId;
-  private int categoryId;
-  private String menuName;
-  private Double price;
-  Boolean status;
+    // Private Attributes
+    private int menuId;
+    private String menuName;
+    private String description;  
+    private Double price;
+    private Boolean status;
 
-  MenuItem(int menuId, int categoryId, String menuName, Double price, Boolean status){
-    this.menuId = menuId;
-    this.categoryId = categoryId;
-    this.menuName = menuName;
-    this.price = price;
-    this.status = status;
-  }
+    // Constructors
+    public MenuItem() {
+        
+    }
 
- // Getters
+    public MenuItem(int menuId, String menuName, String description, Double price, Boolean status) {
+        this.menuId = menuId;
+        this.menuName = menuName;
+        this.description = description;
+        this.price = price;
+        this.status = status;
+    }
+
+    // Getters
     public int getMenuId() {
         return menuId;
     }
 
-    public int getCategoryId() {
-        return categoryId;
-    }
-
     public String getMenuName() {
         return menuName;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public Double getPrice() {
@@ -41,12 +47,12 @@ public class MenuItem {
         this.menuId = menuId;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
     public void setMenuName(String menuName) {
         this.menuName = menuName;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setPrice(Double price) {
@@ -56,7 +62,4 @@ public class MenuItem {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-
-  
-
 }

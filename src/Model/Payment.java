@@ -4,31 +4,38 @@ import java.time.LocalDateTime;
 
 public class Payment {
     // Private attributes
-    private int paymentId;
+    private int transactionId;           
     private int orderId;
     private double amountPaid;
     private String paymentMethod;
     private LocalDateTime paymentDate;
     private int staffId;
-    private int customerId;
-    private String customerName;
+    private Integer loyalCustomerId;     
+    private String unknownCustomerName;  
+    private boolean isActive;
 
-    // Constructor
-    public Payment(int paymentId, int orderId, double amountPaid, String paymentMethod,
-                   LocalDateTime paymentDate, int staffId, int customerId, String customerName) {
-        this.paymentId = paymentId;
+    // Constructors
+    public Payment() {
+        
+    }
+
+    public Payment(int transactionId, int orderId, double amountPaid, String paymentMethod,
+                   LocalDateTime paymentDate, int staffId, Integer loyalCustomerId,
+                   String unknownCustomerName, boolean isActive) {
+        this.transactionId = transactionId;
         this.orderId = orderId;
         this.amountPaid = amountPaid;
         this.paymentMethod = paymentMethod;
         this.paymentDate = paymentDate;
         this.staffId = staffId;
-        this.customerId = customerId;
-        this.customerName = customerName;
+        this.loyalCustomerId = loyalCustomerId;
+        this.unknownCustomerName = unknownCustomerName;
+        this.isActive = isActive;
     }
 
-    // Getters
-    public int getPaymentId() {
-        return paymentId;
+    // Getters 
+    public int getTransactionId() {
+        return transactionId;
     }
 
     public int getOrderId() {
@@ -51,17 +58,21 @@ public class Payment {
         return staffId;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Integer getLoyalCustomerId() {
+        return loyalCustomerId;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getUnknownCustomerName() {
+        return unknownCustomerName;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     // Setters
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
+    public void setTransactionId(int transactionId) {
+        this.transactionId = transactionId;
     }
 
     public void setOrderId(int orderId) {
@@ -84,11 +95,15 @@ public class Payment {
         this.staffId = staffId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setLoyalCustomerId(Integer loyalCustomerId) {
+        this.loyalCustomerId = loyalCustomerId;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setUnknownCustomerName(String unknownCustomerName) {
+        this.unknownCustomerName = unknownCustomerName;
+    }
+
+    public void setActive(boolean active) {
+        this.isActive = active;
     }
 }

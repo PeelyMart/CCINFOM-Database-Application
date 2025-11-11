@@ -5,16 +5,20 @@ import java.time.LocalDate;
 public class LoyaltyMember {
 
     // Private attributes
-    private int memberId;
+    private int customerId;    
     private String name;
     private String contact;
     private LocalDate joinDate;
     private int points;
     private String status;
 
-    // Constructor
-    public LoyaltyMember(int memberId, String name, String contact, LocalDate joinDate, int points, String status) {
-        this.memberId = memberId;
+    // Constructors
+    public LoyaltyMember() {
+        
+    }
+
+    public LoyaltyMember(int customerId, String name, String contact, LocalDate joinDate, int points, String status) {
+        this.customerId = customerId;
         this.name = name;
         this.contact = contact;
         this.joinDate = joinDate;
@@ -23,8 +27,9 @@ public class LoyaltyMember {
     }
 
     // Getters
-    public int getMemberId() {
-        return memberId;
+
+    public int getCustomerId() {
+        return customerId;
     }
 
     public String getName() {
@@ -47,9 +52,10 @@ public class LoyaltyMember {
         return status;
     }
 
-    // Setters
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
+    //Setters
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public void setName(String name) {

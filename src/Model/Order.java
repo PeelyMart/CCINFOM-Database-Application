@@ -8,20 +8,24 @@ public class Order {
     private int orderId;
     private int tableId;
     private int staffId;
-    private int memberId;
-    private LocalDateTime orderDatetime;
-    private String orderStatus;
+    private LocalDateTime orderTime; 
+    private double totalCost;          
+    private String status;
     private List<OrderItem> orderItems;
 
-    // Constructor
-    public Order(int orderId, int tableId, int staffId, int memberId,
-                 LocalDateTime orderDatetime, String orderStatus, List<OrderItem> orderItems) {
+    // Constructors
+    public Order() {
+        
+    }
+
+    public Order(int orderId, int tableId, int staffId, LocalDateTime orderTime, double totalCost,
+                 String status, List<OrderItem> orderItems) {
         this.orderId = orderId;
         this.tableId = tableId;
         this.staffId = staffId;
-        this.memberId = memberId;
-        this.orderDatetime = orderDatetime;
-        this.orderStatus = orderStatus;
+        this.orderTime = orderTime;
+        this.totalCost = totalCost;
+        this.status = status;
         this.orderItems = orderItems;
     }
 
@@ -38,23 +42,24 @@ public class Order {
         return staffId;
     }
 
-    public int getMemberId() {
-        return memberId;
+    public LocalDateTime getOrderTime() {
+        return orderTime;
     }
 
-    public LocalDateTime getOrderDatetime() {
-        return orderDatetime;
+    public double getTotalCost() {
+        return totalCost;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
+    public String getStatus() {
+        return status;
     }
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
 
-    // Setters
+    //Setters 
+
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
@@ -67,16 +72,16 @@ public class Order {
         this.staffId = staffId;
     }
 
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
+    public void setOrderTime(LocalDateTime orderTime) {
+        this.orderTime = orderTime;
     }
 
-    public void setOrderDatetime(LocalDateTime orderDatetime) {
-        this.orderDatetime = orderDatetime;
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setOrderItems(List<OrderItem> orderItems) {
