@@ -9,7 +9,11 @@ public class OrderItem {
     private double subtotal;
     private String status;
 
-    // Constructor
+    // Constructors
+    public OrderItem() {
+        
+    }
+
     public OrderItem(int orderItemId, int orderId, int menuId, int quantity, double subtotal, String status) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
