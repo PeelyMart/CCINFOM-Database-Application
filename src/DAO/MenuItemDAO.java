@@ -1,9 +1,11 @@
 package DAO;
 
+import Model.MenuItem;
+
 import java.sql.*;
 import java.util.ArrayList;
-/*
-public class menuitemDAO {
+
+public class MenuItemDAO {
 
     public boolean addMenuItem(MenuItem menuItem) {
         String sql = "INSERT INTO menu_items (menu_name, description, price, status) VALUES (?, ?, ?, ?)";
@@ -128,5 +130,3 @@ public class menuitemDAO {
         return false;
     }
 }
-
-*/

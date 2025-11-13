@@ -1,9 +1,10 @@
 package DAO;
 
+import Model.OrderItem;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-/*
 public class orderitemDAO {
 
     public boolean addOrderItem(OrderItem orderItem) {
@@ -14,7 +15,7 @@ public class orderitemDAO {
             stmt.setInt(1, orderItem.getOrderId());
             stmt.setInt(2, orderItem.getMenuId());
             stmt.setInt(3, orderItem.getQuantity());
-            stmt.setDouble(4, orderItem.getSubtotal());
+            stmt.setBigDecimal(4, orderItem.getSubtotal());
             stmt.setString(5, orderItem.getStatus());
 
             int affectedRows = stmt.executeUpdate();
@@ -33,9 +34,10 @@ public class orderitemDAO {
         return false;
     }
 
-        public List<OrderItem> getOrderItemsByOrderId(int orderId) {
+    public static List<OrderItem> getOrderItemsByOrderId(int orderId) {
         List<OrderItem> orderItems = new ArrayList<>();
-        String sql = "SELECT * FROM order_items WHERE order_id = ? ORDER BY order_item_id";
+        String sql = "SELECT * FROM order_item WHERE order_id = ? ORDER BY order_item_id";
+
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -44,23 +46,28 @@ public class orderitemDAO {
 
             while (rs.next()) {
                 OrderItem i = new OrderItem();
-
-                    i.setOrderItemId(rs.getInt("order_item_id"));
-                    i.setOrderId(rs.getInt("order_id"));
-                    i.setMenuId(rs.getInt("menu_id"));
-                    i.setQuantity(rs.getInt("quantity"));
-                    i.setSubtotal(rs.getDouble("subtotal"));
-                    i.setStatus(rs.getString("status"));
-
-                    orderItems.add(i);
+                i.setOrderItemId(rs.getInt("order_item_id"));
+                i.setOrderId(rs.getInt("order_id"));
+                i.setMenuId(rs.getInt("menu_id"));
+                i.setQuantity(rs.getInt("quantity"));
+                i.setSubtotal(rs.getBigDecimal("subtotal"));
+                boolean active = rs.getBoolean("is_active");
+                i.setStatus(active ? "active" : "inactive");
+                orderItems.add(i);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return orderItems;
+
+        return orderItems; // Returns empty list if no rows found
     }
 
+
+    /**
+     * @param
+     *
+     */
     public boolean updateOrderItem(OrderItem orderItem) {
         String sql = "UPDATE order_items SET order_id = ?, menu_id = ?, quantity = ?, subtotal = ?, status = ? WHERE order_item_id = ?";
         try (Connection conn = DB.getConnection();
@@ -69,7 +76,7 @@ public class orderitemDAO {
             stmt.setInt(1, orderItem.getOrderId());
             stmt.setInt(2, orderItem.getMenuId());
             stmt.setInt(3, orderItem.getQuantity());
-            stmt.setDouble(4, orderItem.getSubtotal());
+            stmt.setBigDecimal(4, orderItem.getSubtotal());
             stmt.setString(5, orderItem.getStatus());
             stmt.setInt(6, orderItem.getOrderItemId());
 
@@ -97,9 +104,17 @@ public class orderitemDAO {
         return false;
     }
 
-    public ArrayList<OrderItem> getAllOrderItems() {
+
+    /*
+     *
+     *
+     *
+     *
+     */
+
+    public static ArrayList<OrderItem> getAllOrderItems() {
         ArrayList<OrderItem> orderItems = new ArrayList<>();
-        String sql = "SELECT * FROM order_items ORDER BY order_item_id";
+        String sql = "SELECT * FROM order_item ORDER BY order_item_id";
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
@@ -110,8 +125,9 @@ public class orderitemDAO {
                 i.setOrderId(rs.getInt("order_id"));
                 i.setMenuId(rs.getInt("menu_id"));
                 i.setQuantity(rs.getInt("quantity"));
-                i.setSubtotal(rs.getDouble("subtotal"));
-                i.setStatus(rs.getString("status"));
+                i.setSubtotal(rs.getBigDecimal("subtotal"));
+                boolean active = rs.getBoolean("is_active");
+                i.setStatus(active ? "active" : "inactive");
                 orderItems.add(i);
             }
 
@@ -120,5 +136,7 @@ public class orderitemDAO {
         }
         return orderItems;
     }
+
+
+
 }
-*/

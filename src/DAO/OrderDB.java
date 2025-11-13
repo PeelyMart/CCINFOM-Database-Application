@@ -44,15 +44,23 @@ public class OrderDB {
         return -1;
     }
 
-    public static Order getOrderHeader(int headerId) {
+    /**
+     * Fetches an entire order (header + items) by its ID.
+     *
+     * @param headerId The order_id to look up.
+     * @return The full Order object (including its list of OrderItems),
+     *         or null if no matching order header was found.
+     *
+     * ⚙️ NOTE:
+     * - Returns null only if the order header itself does not exist.
+     * - The order’s item list will be empty if no items are found (never null).
+     */
+    public static Order getWholeOrder(int headerId) {
         String headerQuery = "SELECT * FROM order_header WHERE order_id = ?";
-        String itemsQuery = "SELECT * FROM order_item WHERE order_id = ?";
 
         try (Connection conn = DB.getConnection();
-             PreparedStatement headerStmt = conn.prepareStatement(headerQuery);
-             PreparedStatement itemsStmt = conn.prepareStatement(itemsQuery)) {
+             PreparedStatement headerStmt = conn.prepareStatement(headerQuery)) {
 
-            // Fetch header
             headerStmt.setInt(1, headerId);
             ResultSet rsHeader = headerStmt.executeQuery();
 
@@ -64,31 +72,13 @@ public class OrderDB {
                 BigDecimal totalCost = rsHeader.getBigDecimal("total_cost");
                 String statusStr = rsHeader.getString("status");
 
-                Order order = new Order(orderId, tableId, staffId, ts.toLocalDateTime(), totalCost,
-                        OrderStatus.fromString(statusStr));
+                // Build the Order header
+                Order order = new Order(orderId, tableId, staffId,
+                        ts.toLocalDateTime(), totalCost, OrderStatus.fromString(statusStr));
 
-                // Fetch order items
-                itemsStmt.setInt(1, orderId);
-                ResultSet rsItems = itemsStmt.executeQuery();
-
-                List<OrderItem> items = new java.util.ArrayList<>();
-                while (rsItems.next()) {
-                    int orderItemId = rsItems.getInt("order_item_id");
-                    int menuId = rsItems.getInt("menu_id");
-                    int quantity = rsItems.getInt("quantity");
-                    double subtotal = rsItems.getDouble("subtotal");
-
-                    boolean active = rsItems.getBoolean("is_active"); // reads 0/1 as boolean
-                    String itemStatus = active ? "active" : "inactive"; // map to String for model
-
-                    OrderItem item = new OrderItem(orderItemId, orderId, menuId, quantity, subtotal, itemStatus);
-                    items.add(item);
-                }
-
-                // Only set the list if items exist
-                if (!items.isEmpty()) {
-                    order.setOrderItems(items);
-                }
+                // Fetch related order items (may return an empty list)
+                List<OrderItem> itemArray = orderitemDAO.getOrderItemsByOrderId(orderId);
+                order.setOrderItems(itemArray);
 
                 return order;
             }
@@ -99,5 +89,6 @@ public class OrderDB {
 
         return null;
     }
+
 
 }

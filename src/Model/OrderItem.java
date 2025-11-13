@@ -1,12 +1,14 @@
 package Model;
 
+import java.math.BigDecimal;
+
 public class OrderItem {
     // Private attributes
     private int orderItemId;
     private int orderId;
     private int menuId;
     private int quantity;
-    private double subtotal;
+    private BigDecimal subtotal;
     private String status;
 
     // Constructors
@@ -14,7 +16,7 @@ public class OrderItem {
         
     }
 
-    public OrderItem(int orderItemId, int orderId, int menuId, int quantity, double subtotal, String status) {
+    public OrderItem(int orderItemId, int orderId, int menuId, int quantity, BigDecimal subtotal, String status) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.menuId = menuId;
@@ -40,7 +42,7 @@ public class OrderItem {
         return quantity;
     }
 
-    public double getSubtotal() {
+    public BigDecimal getSubtotal() {
         return subtotal;
     }
 
@@ -65,7 +67,7 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public void setSubtotal(double subtotal) {
+    public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
     }
 

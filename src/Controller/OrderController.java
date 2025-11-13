@@ -11,6 +11,9 @@ public class OrderController {
         OrderDB.newOrder(tableId, staffId);
     };
 
+    public static void updateTotal(int table ){}
+
+
 
 
 

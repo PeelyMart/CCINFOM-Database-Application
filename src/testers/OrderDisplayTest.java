@@ -4,20 +4,11 @@ import DAO.OrderDB;
 import Model.Order;
 import Model.OrderItem;
 
-public class orderTest {
+public class OrderDisplayTest {
+
     public static void main(String[] args) {
-        int orderId = OrderDB.newOrder(1, 2);
-        if (orderId != -1){
-            System.out.println("Your order_header is successfully uploaded: " +  orderId);
-
-        }
-        else{
-            System.out.println("Something went wrong check db");
-        }
-        printOrder(OrderDB.getWholeOrder(1));
-
+        printOrder(OrderDB.getWholeOrder(2));
     }
-
 
     public static void printOrder(Order order) {
         System.out.println("Order Details:");
@@ -42,4 +33,3 @@ public class orderTest {
         }
     }
 }
-
