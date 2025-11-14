@@ -5,20 +5,37 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #191f36;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-color: #191f36;"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="UserInterface.StaffOptionsUI">
+
     <children>
         <Label layoutX="262.0" layoutY="14.0" text="Staff Options" textFill="WHITE" />
-        <Button fx:id="searchStaffButton" layoutX="43.0" layoutY="51.0" mnemonicParsing="false" onAction="#searchStaffButtonClick" prefHeight="30.0" prefWidth="65.0" text="Search" />
-        <Button fx:id="addStaffButton" layoutX="274.0" layoutY="51.0" mnemonicParsing="false" onAction="#addStaffButtonClick" prefHeight="30.0" prefWidth="65.0" text="Add" />
-        <Button fx:id="removeStaffButton" layoutX="385.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeStaffButtonClick" prefHeight="30.0" prefWidth="65.0" text="Remove" />
-        <Button fx:id="updateStaffButton" layoutX="493.0" layoutY="51.0" mnemonicParsing="false" onAction="#updateStaffButtonClick" prefHeight="30.0" prefWidth="65.0" text="Update" />
-        <ScrollPane layoutX="36.0" layoutY="107.0" prefHeight="260.0" prefWidth="532.0">
+
+        <Button fx:id="searchStaffButton" layoutX="43.0" layoutY="51.0" mnemonicParsing="false"
+                onAction="#searchStaffButtonClick" prefHeight="30.0" prefWidth="65.0" text="Search" />
+        <Button fx:id="addStaffButton" layoutX="274.0" layoutY="51.0" mnemonicParsing="false"
+                onAction="#addStaffButtonClick" prefHeight="30.0" prefWidth="65.0" text="Add" />
+        <Button fx:id="removeStaffButton" layoutX="385.0" layoutY="51.0" mnemonicParsing="false"
+                onAction="#removeStaffButtonClick" prefHeight="30.0" prefWidth="65.0" text="Remove" />
+        <Button fx:id="updateStaffButton" layoutX="493.0" layoutY="51.0" mnemonicParsing="false"
+                onAction="#updateStaffButtonClick" prefHeight="30.0" prefWidth="65.0" text="Update" />
+
+        <Button fx:id="backButton" layoutX="20.0" layoutY="370.0" prefHeight="30.0" prefWidth="100.0"
+                text="← BACK" onAction="#goBack" />
+
+        <ScrollPane fx:id="scrollPane" layoutX="36.0" layoutY="107.0" prefHeight="260.0" prefWidth="532.0">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="537.0" />
+                <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="537.0" />
             </content>
         </ScrollPane>
-        <TextField fx:id="searchStaff" layoutX="123.0" layoutY="53.0" onAction="#searchStaffEntries" prefHeight="26.0" prefWidth="118.0" promptText="Search staffID" />
+
+        <TextField fx:id="searchStaff" layoutX="123.0" layoutY="53.0"
+                   onAction="#searchStaffEntries" prefHeight="26.0" prefWidth="118.0"
+                   promptText="Search staffID" />
     </children>
-</Pane>
+</AnchorPane>

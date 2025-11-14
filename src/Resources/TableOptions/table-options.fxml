@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="UserInterface.TableOptionsUI"
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-color: #191f36;">
+
+    <children>
+        <!-- Title -->
+        <Label layoutX="260.0" layoutY="14.0" text="Table Options" textFill="WHITE" />
+
+        <!-- Action Buttons -->
+        <Button fx:id="searchButton" layoutX="36.0" layoutY="51.0" prefWidth="80.0"
+                text="Search" onAction="#searchButtonClick" />
+        <Button fx:id="addButton" layoutX="136.0" layoutY="51.0" prefWidth="80.0"
+                text="Add" onAction="#addButtonClick" />
+        <Button fx:id="removeButton" layoutX="236.0" layoutY="51.0" prefWidth="80.0"
+                text="Remove" onAction="#removeButtonClick" />
+        <Button fx:id="updateButton" layoutX="336.0" layoutY="51.0" prefWidth="80.0"
+                text="Update" onAction="#updateButtonClick" />
+
+        <!-- Back Button -->
+        <Button fx:id="backButton" layoutX="20.0" layoutY="360.0" prefWidth="100.0"
+                text="← BACK" onAction="#goBack" />
+
+        <!-- Search Field -->
+        <TextField fx:id="searchField" layoutX="36.0" layoutY="90.0" prefWidth="150.0"
+                   promptText="Enter search term" onAction="#searchFieldEnter" />
+
+        <!-- TableView Area -->
+        <AnchorPane layoutX="36.0" layoutY="130.0" prefWidth="532.0" prefHeight="220.0"
+                    style="-fx-background-color: #222846;">
+            <children>
+                <TableView fx:id="tableView" layoutX="0" layoutY="0" prefWidth="532.0" prefHeight="220.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

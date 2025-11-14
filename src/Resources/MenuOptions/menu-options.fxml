@@ -7,18 +7,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #191f36;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+      style="-fx-background-color: #191f36;" xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.MenuOptionsUI">
    <children>
       <Label layoutX="262.0" layoutY="14.0" text="Menu Options" textFill="WHITE" />
       <Button fx:id="searchMenuButton" layoutX="43.0" layoutY="51.0" mnemonicParsing="false" onAction="#searchMenuButtonClick" prefHeight="30.0" prefWidth="65.0" text="Search" />
       <Button fx:id="addMenuButton" layoutX="274.0" layoutY="51.0" mnemonicParsing="false" onAction="#addMenuButtonClick" prefHeight="30.0" prefWidth="65.0" text="Add" />
       <Button fx:id="removeMenuButton" layoutX="385.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeMenuButtonClick" prefHeight="30.0" prefWidth="65.0" text="Remove" />
       <Button fx:id="updateMenuButton" layoutX="493.0" layoutY="51.0" mnemonicParsing="false" onAction="#updateMenuButtonClick" prefHeight="30.0" prefWidth="65.0" text="Update" />
-      <ScrollPane layoutX="36.0" layoutY="107.0" prefHeight="260.0" prefWidth="532.0">
+       <Button fx:id="backButton"
+               layoutX="20.0" layoutY="370.0"
+               prefHeight="30.0" prefWidth="100.0"
+               onAction="#goBack" text="← BACK" />
+       <ScrollPane layoutX="36.0" layoutY="107.0" prefHeight="260.0" prefWidth="532.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="537.0" />
         </content>
       </ScrollPane>
       <TextField fx:id="searchMenu" layoutX="123.0" layoutY="53.0" onAction="#searchMenuEntries" prefHeight="26.0" prefWidth="118.0" promptText="Search menuID" />
    </children>
-</Pane>
+</AnchorPane>
