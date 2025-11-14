@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 public class OrderitemDAO {
 
+    /**
+     * Inserts a NEW order item record and then writes it on the parameter
+     * @param orderItem - stores the new order item here
+     * @return if successful
+     */
+
     public boolean addOrderItem(OrderItem orderItem) {
         String sql = "INSERT INTO order_items (order_id, menu_id, quantity, subtotal, is_active) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DB.getConnection();
@@ -34,6 +40,11 @@ public class OrderitemDAO {
         return false;
     }
 
+    /**
+     * finds order items based on the order header and returns a list
+     * @param orderId
+     * @return - an array of the order's items - empty if none
+     */
     public static List<OrderItem> getOrderItemsByOrderId(int orderId) {
         List<OrderItem> orderItems = new ArrayList<>();
         String sql = "SELECT * FROM order_item WHERE order_id = ? ORDER BY order_item_id";
@@ -64,8 +75,8 @@ public class OrderitemDAO {
 
 
     /**
+     * changes the order item
      * @param
-     *
      */
     public boolean updateOrderItem(OrderItem orderItem) {
         String sql = "UPDATE order_items SET order_id = ?, menu_id = ?, quantity = ?, subtotal = ?, status = ? WHERE order_item_id = ?";

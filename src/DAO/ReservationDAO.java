@@ -3,8 +3,9 @@ package DAO;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-/*
-public class reservationDAO {
+import Model.Reservations;
+
+public class ReservationDAO {
 
     public boolean addReservation(Reservations reservation) {
         String sql = "INSERT INTO reservations (table_id, reserve_name, date_and_time, subtotal, is_active) VALUES (?, ?, ?, ?, ?)";
@@ -110,4 +111,4 @@ public class reservationDAO {
         }
         return reservations;
     }
-}*/
+}
