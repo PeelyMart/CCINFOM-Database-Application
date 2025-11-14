@@ -1,5 +1,6 @@
 package UserInterface;
 
+import Controller.NavController;
 import Controller.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,11 +28,10 @@ public class LoginUI {
 
     @FXML
     private Text statusText; // optional
-
     private Stage loginStage;  // popup stage
-    private Stage mainStage;   // main application stage
+    private Stage mainStage;// main application stage
 
-
+/* just keeping this here for a template of what we need - p.Ant
     public static void openLogin(Stage mainStage){
         try {
             FXMLLoader loader = new FXMLLoader(LoginUI.class.getResource("/Resources/Login/login.fxml"));
@@ -53,7 +53,7 @@ public class LoginUI {
             e.printStackTrace();
         }
     }
-
+*/
     private int stringHelper(String input){
         try{
             return Integer.parseInt(input);
@@ -82,6 +82,7 @@ public class LoginUI {
         switch(resultFlag){
             case 0:
                 System.out.println("Logged in as: " + UserService.getCurrentUser().getFirstName());
+                NavController.navigate("dashboard");
                 break;
             case 1:
             case 2:
@@ -92,4 +93,5 @@ public class LoginUI {
             default:
         }
     }
+
 }

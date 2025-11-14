@@ -10,6 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.Label?>
 <AnchorPane prefHeight="800.0" prefWidth="1178.0" style="-fx-background-color: #191f36;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.dashboardUI">
 
     <children>
@@ -48,14 +49,14 @@
          <font>
             <Font name="Avenir Book" size="30.0" />
          </font></Button>
-        <Button layoutX="20.0" layoutY="724.0" onAction="#handleReports" prefHeight="40.0" prefWidth="316.0" style="-fx-background-radius: 50;" text="Log Out">
+        <Button layoutX="20.0" layoutY="724.0" onAction="#handleLogout" prefHeight="40.0" prefWidth="316.0" style="-fx-background-radius: 50;" text="Log Out">
          <font>
             <Font name="Avenir Book" size="20.0" />
          </font></Button>
-        <TextField layoutX="15.0" layoutY="34.0" prefHeight="51.0" prefWidth="316.0" text="Cashier:">
+        <Label fx:id = "cashierLabel" layoutX="15.0" layoutY="34.0" prefHeight="51.0" prefWidth="316.0" text="Cashier:" textFill="WHITE">
          <font>
             <Font name="Helvetica Neue" size="21.0" />
-         </font></TextField>
+         </font></Label>
 
     </children>
 </AnchorPane>
