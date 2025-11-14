@@ -7,15 +7,21 @@ public class Table {
     private boolean isAvailable;
 
     // Constructors
-    public Table() {
-    }
 
+    public Table(){
+
+    }
+    public Table(int capacity, boolean tableStatus) {
+        this.capacity = capacity;
+        this.isAvailable = tableStatus;
+    }
+/*
     public Table(int tableId, int capacity, boolean tableStatus) {
         this.tableId = tableId;
         this.capacity = capacity;
         this.isAvailable = tableStatus;
     }
-
+*/
     // Getters
     public int getTableId() {
         return tableId;

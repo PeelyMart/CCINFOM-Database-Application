@@ -1,11 +1,23 @@
 package Controller;
 
+import DAO.OrderDB;
+import DAO.OrderitemDAO;
+import DAO.TableDAO;
+import Model.OrderStatus;
 import Model.Table;
 
 public class TableActions {
 
+    public static void closeTable(Table currTb, int customerID){
+        int isPaid = PaymentControl.initiatePayment(OrderDB.getWholeOrderByTable(currTb.getTableId()), customerID);
+        if(isPaid == 1) {
+            currTb.setTableStatus(true);
+        }
+    }
 
-    public static void initiateTable(Table currTb, int staffInCharge){
+
+
+    public static void initateTable(Table currTb, int staffInCharge){
         /*
             TODO:
             1. Access table

@@ -9,20 +9,23 @@ public class OrderItem {
     private int menuId;
     private int quantity;
     private BigDecimal subtotal;
-    private String status;
+    private boolean isActive;
+    private String statusAsAtring;
 
     // Constructors
     public OrderItem() {
         
     }
 
-    public OrderItem(int orderItemId, int orderId, int menuId, int quantity, BigDecimal subtotal, String status) {
+    public OrderItem(int orderItemId, int orderId, int menuId, int quantity, BigDecimal subtotal, Boolean status) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.menuId = menuId;
         this.quantity = quantity;
         this.subtotal = subtotal;
-        this.status = status;
+        this.isActive= status;
+
+
     }
 
     // Getters
@@ -46,8 +49,12 @@ public class OrderItem {
         return subtotal;
     }
 
-    public String getStatus() {
-        return status;
+    public Boolean getStatus() {
+        return isActive;
+    }
+
+    public String getStatusAsAtring(){
+        return statusAsAtring;
     }
 
     // Setters
@@ -71,7 +78,10 @@ public class OrderItem {
         this.subtotal = subtotal;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(Boolean status) {
+        this.isActive = status;
+        statusAsAtring = isActive ? "active" : "inactive";
     }
+
+
 }

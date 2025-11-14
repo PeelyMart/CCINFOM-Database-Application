@@ -2,6 +2,9 @@ package Controller;
 
 import DAO.OrderDB;
 import Model.Order;
+import Model.OrderItem;
+
+import java.math.BigDecimal;
 
 public class OrderController {
 
@@ -11,7 +14,21 @@ public class OrderController {
         OrderDB.newOrder(tableId, staffId);
     };
 
-    public static void updateTotal(int table ){}
+    public static void updateTotal(Order currOrd){
+        if(!currOrd.getOrderItems().isEmpty()){
+            BigDecimal totalOrder = BigDecimal.valueOf(0);
+            for(OrderItem item : currOrd.getOrderItems()){
+                if(item.getStatus()) {
+                    totalOrder = totalOrder.add(item.getSubtotal());
+                }
+            }
+            currOrd.setTotalCost(totalOrder);
+        }
+        else{
+            currOrd.setTotalCost(BigDecimal.valueOf(0.00));
+        }
+
+    }
 
 
 

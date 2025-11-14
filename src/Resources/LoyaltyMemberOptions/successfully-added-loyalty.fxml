@@ -4,16 +4,23 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #191f36;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label layoutX="235.0" layoutY="14.0" text="Loyalty Member Options" textFill="WHITE" />
+        <Label layoutX="173.0" layoutY="14.0" text="Loyalty Member Options" textFill="WHITE">
+         <font>
+            <Font name="Helvetica Neue" size="23.0" />
+         </font></Label>
         <ScrollPane layoutX="36.0" layoutY="107.0" prefHeight="260.0" prefWidth="532.0">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="537.0" />
             </content>
         </ScrollPane>
-        <Text fill="WHITE" layoutX="46.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loyalty member has been successfully added! Returning to loyalty member options..." wrappingWidth="466.177734375" />
+        <Text fill="WHITE" layoutX="46.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loyalty member has been successfully added! Returning to loyalty member options..." wrappingWidth="466.177734375">
+         <font>
+            <Font name="Helvetica Neue" size="13.0" />
+         </font></Text>
     </children>
 </Pane>

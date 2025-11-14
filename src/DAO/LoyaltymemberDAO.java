@@ -1,10 +1,65 @@
 package DAO;
 
+import Model.LoyaltyMember;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-/*
-public class loyaltymemberDAO {
+public class LoyaltymemberDAO {
+    /**
+     * Increment loyalty points for a member by a given amount.
+     *
+     * @param customerId The ID of the loyalty member.
+     * @param points     The number of points to add (must be positive).
+     * @return true if the update succeeded, false otherwise.
+     */
+    public static boolean addPoints(int customerId, int points) {
+        if (points <= 0) return false; // nothing to add
+
+        String sql = "UPDATE loyalty_members SET points = points + ? WHERE customer_id = ?";
+        try (Connection conn = DB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, points);
+            stmt.setInt(2, customerId);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    /**
+     * Decrement loyalty points for a member by a given amount.
+     * Points will not go below 0.
+     *
+     * @param customerId The ID of the loyalty member.
+     * @param points     The number of points to subtract (must be positive).
+     * @return true if the update succeeded, false otherwise.
+     */
+    public boolean subtractPoints(int customerId, int points) {
+        if (points <= 0) return false; // nothing to subtract
+
+        String sql = "UPDATE loyalty_members SET points = GREATEST(points - ?, 0) WHERE customer_id = ?";
+        try (Connection conn = DB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, points);
+            stmt.setInt(2, customerId);
+
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
 
     public boolean addLoyaltyMember(LoyaltyMember member) {
         String sql = "INSERT INTO loyalty_members (name, contact, join_date, points, status) VALUES (?, ?, ?, ?, ?)";
@@ -141,5 +196,3 @@ public class loyaltymemberDAO {
         return false;
     }
 }
-
-*/

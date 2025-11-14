@@ -1,5 +1,6 @@
 package DAO;
 
+import Controller.OrderController;
 import Model.Order;
 import Model.OrderItem;
 import Model.OrderStatus;
@@ -77,8 +78,9 @@ public class OrderDB {
                         ts.toLocalDateTime(), totalCost, OrderStatus.fromString(statusStr));
 
                 // Fetch related order items (may return an empty list)
-                List<OrderItem> itemArray = orderitemDAO.getOrderItemsByOrderId(orderId);
+                List<OrderItem> itemArray = OrderitemDAO.getOrderItemsByOrderId(orderId);
                 order.setOrderItems(itemArray);
+                OrderController.updateTotal(order);
 
                 return order;
             }
@@ -89,6 +91,45 @@ public class OrderDB {
 
         return null;
     }
+
+
+    public static Order getWholeOrderByTable(int tableId) {
+        String headerQuery = "SELECT * FROM order_header WHERE table_id = ?";
+
+        try (Connection conn = DB.getConnection();
+             PreparedStatement headerStmt = conn.prepareStatement(headerQuery)) {
+
+            headerStmt.setInt(1, tableId );
+            ResultSet rsHeader = headerStmt.executeQuery();
+
+            if (rsHeader.next()) {
+                int orderId = rsHeader.getInt("order_id");
+                int table_id = rsHeader.getInt("table_id");
+                int staffId = rsHeader.getInt("staff_id");
+                Timestamp ts = rsHeader.getTimestamp("order_time");
+                BigDecimal totalCost = rsHeader.getBigDecimal("total_cost");
+                String statusStr = rsHeader.getString("status");
+
+                // Build the Order header
+                Order order = new Order(orderId, table_id, staffId,
+                        ts.toLocalDateTime(), totalCost, OrderStatus.fromString(statusStr));
+
+                // Fetch related order items (may return an empty list)
+                List<OrderItem> itemArray = OrderitemDAO.getOrderItemsByOrderId(orderId);
+                order.setOrderItems(itemArray);
+                OrderController.updateTotal(order);
+
+                return order;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+
 
 
 }

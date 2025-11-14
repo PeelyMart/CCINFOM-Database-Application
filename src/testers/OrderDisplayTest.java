@@ -7,7 +7,7 @@ import Model.OrderItem;
 public class OrderDisplayTest {
 
     public static void main(String[] args) {
-        printOrder(OrderDB.getWholeOrder(2));
+        printOrder(OrderDB.getWholeOrder(1));
     }
 
     public static void printOrder(Order order) {
@@ -22,11 +22,11 @@ public class OrderDisplayTest {
         if (order.getOrderItems() != null && !order.getOrderItems().isEmpty()) {
             System.out.println("\nOrder Items:");
             for (OrderItem item : order.getOrderItems()) {
-                System.out.println("Item ID: " + item.getOrderItemId()
-                        + ", Menu ID: " + item.getMenuId()
-                        + ", Quantity: " + item.getQuantity()
-                        + ", Subtotal: " + item.getSubtotal()
-                        + ", Status: " + item.getStatus());
+                    System.out.println("Item ID: " + item.getOrderItemId()
+                            + ", Menu ID: " + item.getMenuId()
+                            + ", Quantity: " + item.getQuantity()
+                            + ", Subtotal: " + item.getSubtotal()
+                            + ", Status: " + item.getStatusAsAtring());
             }
         } else {
             System.out.println("No items in this order.");

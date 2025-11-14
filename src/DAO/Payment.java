@@ -4,9 +4,9 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 /*
-public class paymentDAO {
+public class PaymentDAO {
 
-    public boolean addPayment(Payment payment) {
+    public boolean recordPayment(Payment payment) {
         String sql = "INSERT INTO payments (order_id, amount_paid, payment_method, payment_date, staff_id, loyal_customer_id, unknown_customer_name, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {

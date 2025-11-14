@@ -6,19 +6,35 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #191f36;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label layoutX="240.0" layoutY="14.0" text="Loyalty Member Options" textFill="WHITE" />
-        <Button fx:id="searchLoyaltyButton" layoutX="43.0" layoutY="51.0" mnemonicParsing="false" onAction="#searchLoyaltyButtonClick" prefHeight="30.0" prefWidth="65.0" text="Search" />
-        <Button fx:id="addLoyaltyButton" layoutX="274.0" layoutY="51.0" mnemonicParsing="false" onAction="#addLoyaltyButtonClick" prefHeight="30.0" prefWidth="65.0" text="Add" />
-        <Button fx:id="removeLoyaltyButton" layoutX="385.0" layoutY="51.0" mnemonicParsing="false" onAction="#removeLoyaltyButtonClick" prefHeight="30.0" prefWidth="65.0" text="Remove" />
-        <Button fx:id="updateLoyaltyButton" layoutX="493.0" layoutY="51.0" mnemonicParsing="false" onAction="#updateLoyaltyButtonClick" prefHeight="30.0" prefWidth="65.0" text="Update" />
+        <Label layoutX="175.0" layoutY="14.0" text="Loyalty Member Options" textFill="WHITE">
+         <font>
+            <Font name="Helvetica Neue" size="23.0" />
+         </font></Label>
+        <Button fx:id="searchLoyaltyButton" layoutX="36.0" layoutY="52.0" mnemonicParsing="false" onAction="#searchLoyaltyButtonClick" prefHeight="30.0" prefWidth="65.0" text="Search">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Button>
+        <Button fx:id="addLoyaltyButton" layoutX="278.0" layoutY="51.0" mnemonicParsing="false" onAction="#addLoyaltyButtonClick" prefHeight="30.0" prefWidth="65.0" text="Add">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Button>
+        <Button fx:id="removeLoyaltyButton" layoutX="389.0" layoutY="52.0" mnemonicParsing="false" onAction="#removeLoyaltyButtonClick" prefHeight="30.0" prefWidth="65.0" text="Remove">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Button>
+        <Button fx:id="updateLoyaltyButton" layoutX="503.0" layoutY="52.0" mnemonicParsing="false" onAction="#updateLoyaltyButtonClick" prefHeight="30.0" prefWidth="65.0" text="Update">
+         <font>
+            <Font name="Avenir Book" size="13.0" />
+         </font></Button>
         <ScrollPane layoutX="36.0" layoutY="107.0" prefHeight="260.0" prefWidth="532.0">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="537.0" />
             </content>
         </ScrollPane>
-        <TextField fx:id="searchMemberID" layoutX="123.0" layoutY="53.0" onAction="#searchMemberID" prefHeight="26.0" prefWidth="118.0" promptText="Search memberID" />
+        <TextField fx:id="searchMemberID" layoutX="123.0" layoutY="56.0" onAction="#searchMemberID" prefHeight="26.0" prefWidth="118.0" promptText="Search memberID" />
     </children>
 </Pane>

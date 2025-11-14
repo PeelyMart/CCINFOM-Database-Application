@@ -1,5 +1,6 @@
 package UserInterface;
 
+import Controller.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,13 +10,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginUI {
 
     @FXML
-    private TextField usernameField;
+    private TextField staffIDField;
 
     @FXML
     private TextField passwordField;
@@ -29,10 +31,42 @@ public class LoginUI {
     private Stage loginStage;  // popup stage
     private Stage mainStage;   // main application stage
 
+
+    public static void openLogin(Stage mainStage){
+        try {
+            FXMLLoader loader = new FXMLLoader(LoginUI.class.getResource("/Resources/Login/login.fxml"));
+            AnchorPane root = loader.load();
+
+            LoginUI controller = loader.getController();
+            controller.mainStage = mainStage;
+
+            Stage loginStage = new Stage();
+            controller.loginStage = loginStage;
+
+            loginStage.setScene(new Scene(root));
+            loginStage.setTitle("Login");
+            loginStage.initModality(Modality.APPLICATION_MODAL);
+            loginStage.setResizable(false);
+            loginStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int stringHelper(String input){
+        try{
+            return Integer.parseInt(input);
+        }catch (NumberFormatException e){
+            return -1;
+        }
+    }
+
     // Method to set stage references
     public void setStages(Stage loginStage, Stage mainStage) {
         this.loginStage = loginStage;
         this.mainStage = mainStage;
+        initialize();
     }
 
     @FXML
@@ -40,42 +74,22 @@ public class LoginUI {
         loginButton.setOnAction(e -> handleLogin());
     }
 
+    @FXML
     private void handleLogin() {
-        String username = usernameField.getText().trim();
+        String username = staffIDField.getText().trim();
         String password = passwordField.getText().trim();
-
-        if (username.equals("admin") && password.equals("password")) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Login Success");
-            alert.setHeaderText(null);
-            alert.setContentText("Welcome, " + username + "!");
-            alert.showAndWait();
-
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/Dashboard/dashboard.fxml"));
-                AnchorPane root = loader.load();
-                Scene scene = new Scene(root);
-
-                // Optionally, you can hide login stage and show main stage
-                loginStage.close();
-                mainStage.setScene(scene);
-                mainStage.show();
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                Alert errorAlert = new Alert(AlertType.ERROR);
-                errorAlert.setTitle("Error");
-                errorAlert.setHeaderText(null);
-                errorAlert.setContentText("Failed to load dashboard.");
-                errorAlert.showAndWait();
-            }
-
-        } else {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Login Failed");
-            alert.setHeaderText(null);
-            alert.setContentText("Invalid username or password.");
-            alert.showAndWait();
+        int resultFlag = UserService.logIn(stringHelper(username), stringHelper(password));
+        switch(resultFlag){
+            case 0:
+                System.out.println("Logged in as: " + UserService.getCurrentUser().getFirstName());
+                break;
+            case 1:
+            case 2:
+                System.out.println("Credential Error");
+                break;
+            case 999:
+                System.out.println("Input Error");
+            default:
         }
     }
 }

@@ -6,7 +6,7 @@ import Model.OrderItem;
 
 public class orderTest {
     public static void main(String[] args) {
-        int orderId = OrderDB.newOrder(1, 2);
+        int orderId = OrderDB.newOrder(2, 2);
         if (orderId != -1){
             System.out.println("Your order_header is successfully uploaded: " +  orderId);
 
@@ -14,7 +14,7 @@ public class orderTest {
         else{
             System.out.println("Something went wrong check db");
         }
-        printOrder(OrderDB.getWholeOrder(1));
+        printOrder(OrderDB.getWholeOrder(2));
 
     }
 
