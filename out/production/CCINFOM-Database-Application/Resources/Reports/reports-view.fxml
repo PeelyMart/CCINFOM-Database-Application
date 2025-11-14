@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0"
             style="-fx-background-color: #191f36;"
@@ -12,27 +11,28 @@
 
     <children>
 
+        <!-- Title -->
         <Label layoutX="281.0" layoutY="14.0"
                text="Reports" textFill="WHITE" />
 
         <!-- Buttons -->
-        <Button layoutX="36.0" layoutY="51.0" prefWidth="100.0"
-                text="Sales Report" onAction="#showSalesReport"/>
+        <Button fx:id="tablesButton" layoutX="36.0" layoutY="51.0" prefWidth="100.0"
+                text="Sales Report"/>
 
-        <Button layoutX="181.0" layoutY="51.0" prefWidth="100.0"
-                text="Sales" onAction="#showSales"/>
+        <Button fx:id="staffButton" layoutX="181.0" layoutY="51.0" prefWidth="100.0"
+                text="Sales"/>
 
-        <Button layoutX="323.0" layoutY="51.0" prefWidth="100.0"
-                text="Menu" onAction="#showMenu"/>
+        <Button fx:id="menuButton" layoutX="323.0" layoutY="51.0" prefWidth="100.0"
+                text="Menu"/>
 
-        <Button layoutX="468.0" layoutY="51.0" prefWidth="100.0"
-                text="Loyalty Members" onAction="#showLoyalty"/>
+        <Button fx:id="loyaltyButton" layoutX="468.0" layoutY="51.0" prefWidth="100.0"
+                text="Loyalty Members"/>
 
         <!-- Back button -->
         <Button fx:id="backButton" layoutX="20.0" layoutY="360.0"
                 prefHeight="30.0" prefWidth="100.0" text="← BACK"/>
 
-        <!-- DYNAMIC CONTENT AREA -->
+        <!-- Dynamic content area -->
         <AnchorPane fx:id="contentArea"
                     layoutX="36.0" layoutY="108.0"
                     prefWidth="532.0" prefHeight="250.0"
