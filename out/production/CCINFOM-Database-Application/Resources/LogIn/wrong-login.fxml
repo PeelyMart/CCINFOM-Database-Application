@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CONTROLLER_NAME">
+    <children>
+        <Pane layoutX="308.0" prefHeight="399.0" prefWidth="292.0">
+            <children>
+                <Text layoutX="58.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log In">
+                    <font>
+                        <Font name="Avenir Book" size="31.0" />
+                    </font>
+                </Text>
+                <TextField layoutX="56.0" layoutY="146.0" prefHeight="26.0" prefWidth="179.0" promptText="Username" />
+                <TextField layoutX="56.0" layoutY="206.0" prefHeight="26.0" prefWidth="179.0" promptText="Password" />
+                <Button layoutX="59.0" layoutY="259.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="171.0" style="-fx-background-radius: 50; -fx-background-color: #2f3961;" text="Log In" textFill="WHITE" />
+            <Text fill="#d71818" layoutX="91.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Incorrect password or username. Try again.">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Text>
+            </children>
+        </Pane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+                <Pane layoutY="-5.0" prefHeight="406.0" prefWidth="309.0" style="-fx-background-color: #191f36;">
+                    <children>
+                        <Text fill="WHITE" layoutX="65.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in to your account in order to access the database." textAlignment="CENTER" wrappingWidth="176.33306884765625">
+                            <font>
+                                <Font name="Avenir Book" size="10.0" />
+                            </font>
+                        </Text>
+                        <Text fill="#f5f5f5" layoutX="98.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, Staff!">
+                            <font>
+                                <Font name="Avenir Book" size="16.0" />
+                            </font>
+                        </Text>
+                        <Circle fill="#191f36" layoutX="288.0" layoutY="189.0" radius="51.0" stroke="#191f36" strokeType="INSIDE" />
+                        <Circle fill="#191f36" layoutX="289.0" layoutY="371.0" radius="52.0" stroke="#191f36" strokeType="INSIDE" />
+                        <Circle fill="#191f36" layoutX="286.0" layoutY="48.0" radius="51.0" stroke="#191f36" strokeType="INSIDE" />
+                        <Circle fill="#191f36" layoutX="291.0" layoutY="245.0" radius="51.0" stroke="#191f36" strokeType="INSIDE" />
+                        <Circle fill="#191f36" layoutX="289.0" layoutY="122.0" radius="51.0" stroke="#191f36" strokeType="INSIDE" />
+                        <Text fill="#fcfcfc" layoutX="30.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CCINFOM Database Application" textAlignment="CENTER" wrappingWidth="246.609375">
+                            <font>
+                                <Font name="Helvetica Neue" size="25.0" />
+                            </font>
+                        </Text>
+                        <Circle fill="#191f36" layoutX="292.0" layoutY="308.0" radius="51.0" stroke="#191f36" strokeType="INSIDE" />
+                    </children>
+                </Pane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
