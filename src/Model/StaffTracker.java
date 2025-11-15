@@ -54,7 +54,7 @@ public class StaffTracker {
         this.timeOut = timeOut;
     }
 
-    public void setHoursWorked(int session_minutes) {
+    public void setSessionMinutes(int session_minutes) {
         this.session_minutes = session_minutes;
     }
 }

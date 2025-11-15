@@ -2,6 +2,7 @@ package UserInterface;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class TransactionMenuUI {
 
@@ -10,22 +11,30 @@ public class TransactionMenuUI {
 
     @FXML
     private void initialize() {
-        // Scene navigation for existing buttons
-        if (ordersButton != null)
-            ordersButton.setOnAction(e -> SceneNavigator.switchScene(ordersButton, "/Resources/Transactions/orders.fxml"));
+        // Scene navigation buttons
+        if (ordersButton != null) {
+            ordersButton.setOnAction(e ->
+                    SceneNavigator.switchScene(ordersButton, "/Resources/Transactions/orders.fxml"));
+        }
 
-        if (reservationsButton != null)
-            reservationsButton.setOnAction(e -> SceneNavigator.switchScene(reservationsButton, "/Resources/Transactions/reservations.fxml"));
+        if (reservationsButton != null) {
+            reservationsButton.setOnAction(e ->
+                    SceneNavigator.switchScene(reservationsButton, "/Resources/Transactions/reservations.fxml"));
+        }
 
-        // Non-functional ones show test popup for now
-        if (takenButton != null)
+        // Non-functional buttons show test popup
+        if (takenButton != null) {
             takenButton.setOnAction(e -> SceneNavigator.testClick("TAKEN"));
+        }
 
-        if (availableButton != null)
+        if (availableButton != null) {
             availableButton.setOnAction(e -> SceneNavigator.testClick("AVAILABLE"));
+        }
 
         // Back button → returns to main or previous scene
-        if (backButton != null)
-            backButton.setOnAction(e -> SceneNavigator.switchScene(backButton, "/Resources/MainMenu/dashboard.fxml"));
+        if (backButton != null) {
+            backButton.setOnAction(e ->
+                    SceneNavigator.switchScene(backButton, "/Resources/MainMenu/dashboard.fxml"));
+        }
     }
 }

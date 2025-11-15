@@ -4,24 +4,56 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="321.0" prefWidth="495.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.SettledCashUI">
-   <children>
-      <TextArea layoutX="33.0" layoutY="26.0" prefHeight="47.0" prefWidth="430.0" />
-      <Button fx:id="paidButton"
-              layoutX="33.0" layoutY="267.0" mnemonicParsing="false"
-              prefHeight="26.0" prefWidth="194.0" text="PAID [ORDER CLOSE]" />
-      <Button fx:id="cancelButton"
-              layoutX="268.0" layoutY="267.0" mnemonicParsing="false"
-              prefHeight="26.0" prefWidth="194.0" text="CANCEL" />
-      <Button fx:id="backButton"
-              layoutX="20.0" layoutY="370.0"
-              prefHeight="30.0" prefWidth="100.0"
-              text="← BACK" />
-      <TextField layoutX="33.0" layoutY="114.0" prefHeight="47.0" prefWidth="430.0" />
-      <Text layoutX="33.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AMOUNT PAID" />
-      <Text layoutX="33.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHANGE DUE" />
-      <TextArea layoutX="32.0" layoutY="198.0" prefHeight="47.0" prefWidth="430.0" />
-   </children>
+<AnchorPane prefHeight="407.0" prefWidth="495.0" style="-fx-background-color: linear-gradient(to bottom right, #f0f0f0, #d4e0f5);" stylesheets="@../styleopt.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.SettledCashUI">
+
+    <children>
+        <!-- Title -->
+        <Text fill="WHITE" layoutX="33.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SETTLED CASH" wrappingWidth="430.0">
+            <font>
+                <Font name="Verdana Bold" size="37.0" />
+            </font>
+        </Text>
+
+        <!-- Amount Paid -->
+        <Text fill="WHITE" layoutX="33.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AMOUNT PAID">
+            <font>
+                <Font name="Verdana Bold" size="16.0" />
+            </font>
+        </Text>
+        <TextField fx:id="amountPaidField" layoutX="33.0" layoutY="90.0" prefHeight="47.0" prefWidth="430.0" />
+
+        <!-- Change Due -->
+        <Text fill="WHITE" layoutX="33.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHANGE DUE">
+            <font>
+                <Font name="Verdana Bold" size="16.0" />
+            </font>
+        </Text>
+        <TextArea fx:id="changeDueArea" layoutX="33.0" layoutY="170.0" prefHeight="47.0" prefWidth="430.0" />
+
+        <!-- Notes / Optional -->
+        <TextArea fx:id="notesArea" layoutX="32.0" layoutY="242.0" prefHeight="47.0" prefWidth="430.0" />
+
+        <!-- Action Buttons -->
+        <Button fx:id="paidButton" layoutX="33.0" layoutY="300.0" prefHeight="40.0" prefWidth="194.0" style="-fx-background-radius: 15;" text="PAID [ORDER CLOSE]" textFill="WHITE">
+            <font>
+                <Font name="Verdana Bold" size="14.0" />
+            </font>
+        </Button>
+
+        <Button fx:id="cancelButton" layoutX="267.0" layoutY="300.0" prefHeight="40.0" prefWidth="194.0" style="-fx-background-radius: 15;" text="CANCEL" textFill="WHITE">
+            <font>
+                <Font name="Verdana Bold" size="14.0" />
+            </font>
+        </Button>
+
+        <!-- Back Button -->
+        <Button fx:id="backButton" layoutX="20.0" layoutY="346.0" prefHeight="46.0" prefWidth="175.0" style="-fx-background-radius: 15;" text="← BACK" textFill="WHITE">
+            <font>
+                <Font name="Verdana Bold" size="14.0" />
+            </font>
+        </Button>
+    </children>
 </AnchorPane>

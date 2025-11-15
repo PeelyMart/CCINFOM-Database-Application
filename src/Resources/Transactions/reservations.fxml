@@ -3,27 +3,43 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.reservationsUI">
+<AnchorPane prefHeight="426.0" prefWidth="600.0" stylesheets="@../styleopt.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.reservationsUI">
    <children>
-      <TableView layoutX="26.0" layoutY="42.0" prefHeight="292.0" prefWidth="547.0">
+      <TableView layoutX="25.0" layoutY="74.0" prefHeight="293.0" prefWidth="547.0">
         <columns>
           <TableColumn prefWidth="362.39996337890625" text="DATE" />
           <TableColumn minWidth="0.0" prefWidth="76.800048828125" text="PAX" />
             <TableColumn prefWidth="108.79998779296875" text="ID" />
         </columns>
       </TableView>
-      <Text layoutX="26.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RESERVATIONS" />
-       <Button fx:id="addButton" layoutX="26.0" layoutY="349.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="ADD" />
-       <Button fx:id="searchButton" layoutX="164.0" layoutY="349.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="SEARCH" />
-       <Button fx:id="editButton" layoutX="310.0" layoutY="349.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="EDIT" />
-       <Button fx:id="deleteButton" layoutX="446.0" layoutY="349.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="DELETE" />
-       <Button fx:id="backButton"
-               layoutX="20.0" layoutY="370.0"
-               prefHeight="30.0" prefWidth="100.0"
-               text="← BACK" />
+      <Text fill="WHITE" layoutX="25.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="📅 RESERVATIONS">
+         <font>
+            <Font name="Verdana Bold" size="30.0" />
+         </font></Text>
+       <Button fx:id="addButton" layoutX="447.0" layoutY="365.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="70.0" text="➕" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+       <Button fx:id="searchButton" layoutX="521.0" layoutY="17.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="78.0" text="🔍" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+       <Button fx:id="editButton" layoutX="473.0" layoutY="364.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="78.0" text="🔔" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+       <Button fx:id="deleteButton" layoutX="496.0" layoutY="365.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="94.0" text="❌" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+       <Button fx:id="backButton" layoutX="25.0" layoutY="364.0" prefHeight="30.0" prefWidth="100.0" text="← BACK" textFill="WHITE" />
+
+       <!-- Search TextField -->
+       <TextField fx:id="searchReservations" layoutX="349.0" layoutY="31.0" onAction="#searchStaffEntries" prefHeight="26.0" prefWidth="193.0" promptText="Search staffID" style="-fx-background-color: #242d4e;" />
    </children>
 </AnchorPane>

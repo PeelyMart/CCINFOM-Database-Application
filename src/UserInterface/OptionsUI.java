@@ -12,7 +12,7 @@ public class OptionsUI {
     private void initialize() {
         // assign the same handler to all buttons
         if (tableButton != null)
-            tableButton.setOnAction(e -> SceneNavigator.switchScene(tableButton, "/Resources/StaffOptions/staff-options.fxml"));
+            tableButton.setOnAction(e -> SceneNavigator.switchScene(tableButton, "/Resources/TableOptions/table-options.fxml"));
 
         if (staffButton != null)
             staffButton.setOnAction(e -> SceneNavigator.switchScene(staffButton, "/Resources/StaffOptions/staff-options.fxml"));

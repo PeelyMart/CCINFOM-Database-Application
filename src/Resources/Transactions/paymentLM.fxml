@@ -5,17 +5,27 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="433.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to bottom right, #f0f0f0, #d4e0f5);" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.PaymentLMUI">
+<AnchorPane prefHeight="443.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(to bottom right, #f0f0f0, #d4e0f5);" stylesheets="@../styleopt.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.PaymentLMUI">
    <children>
-      <TextField layoutX="36.0" layoutY="78.0" prefHeight="26.0" prefWidth="211.0" />
-      <Text layoutX="105.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYMENT [AS A LOYALTY MEMBER]" />
-      <Label layoutX="36.0" layoutY="110.0" prefHeight="18.0" prefWidth="328.0" text="INVALID" />
-      <TextArea layoutX="36.0" layoutY="136.0" prefHeight="26.0" prefWidth="328.0" />
-      <TextArea layoutX="36.0" layoutY="188.0" prefHeight="166.0" prefWidth="328.0" />
-      <Button fx:id="searchButton" layoutX="261.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="SEARCH" />
-      <Button fx:id="backButton" layoutX="36.0" layoutY="373.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="BACK" />
-      <Button fx:id="payButton" layoutX="261.0" layoutY="373.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="PAY" />
+      <TextField layoutX="36.0" layoutY="91.0" prefHeight="26.0" prefWidth="266.0" style="-fx-background-color: #242d4e;" />
+      <Text fill="WHITE" layoutX="61.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYMENT [AS A LOYALTY MEMBER]" textAlignment="CENTER" wrappingWidth="277.09959411621094">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font></Text>
+      <Label layoutX="36.0" layoutY="128.0" prefHeight="18.0" prefWidth="328.0" text="INVALID" textFill="WHITE" />
+      <TextArea layoutX="36.0" layoutY="154.0" prefHeight="26.0" prefWidth="328.0" />
+      <TextArea layoutX="36.0" layoutY="199.0" prefHeight="166.0" prefWidth="328.0" />
+      <Button fx:id="searchButton" layoutX="287.0" layoutY="82.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="🔍" textFill="WHITE" />
+      <Button fx:id="backButton" layoutX="36.0" layoutY="379.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="BACK" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="payButton" layoutX="261.0" layoutY="375.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="PAY" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="19.0" />
+         </font></Button>
    </children>
 </AnchorPane>

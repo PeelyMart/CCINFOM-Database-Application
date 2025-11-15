@@ -23,6 +23,7 @@ public class SessionTracker {
      */
     private static void calculateMinutes(){
         session_minutes = (int) Duration.between(currentTracker.getTimeIn(), currentTracker.getTimeOut()).toMinutes();
+        currentTracker.setSessionMinutes(session_minutes);
     }
     private static void resetTracker(){
         currentTracker = null;
