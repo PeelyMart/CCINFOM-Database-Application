@@ -15,6 +15,7 @@ public class Order {
     private BigDecimal totalCost;
     private OrderStatus status;
     private List<OrderItem> orderItems;
+    private String paymentMethod;
 
     // Constructors
     public Order() {
@@ -59,6 +60,10 @@ public class Order {
         return orderItems;
     }
 
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
     //Setters 
 
     public void setOrderId(int orderId) {
@@ -87,5 +92,9 @@ public class Order {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }
