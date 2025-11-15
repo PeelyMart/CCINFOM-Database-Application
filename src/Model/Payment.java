@@ -3,11 +3,18 @@ package Model;
 import java.time.LocalDateTime;
 
 public class Payment {
+
+    public enum PaymentMethod {
+        CASH,
+        DEBIT,
+        CREDIT
+    }
+
     // Private attributes
     private int transactionId;           
     private int orderId;
     private double amountPaid;
-    private String paymentMethod;
+    private PaymentMethod paymentMethod;
     private LocalDateTime paymentDate;
     private int staffId;
     private Integer loyalCustomerId;     
@@ -19,7 +26,7 @@ public class Payment {
         
     }
 
-    public Payment(int transactionId, int orderId, double amountPaid, String paymentMethod,
+    public Payment(int transactionId, int orderId, double amountPaid, PaymentMethod paymentMethod,
                    LocalDateTime paymentDate, int staffId, Integer loyalCustomerId,
                    String unknownCustomerName, boolean isActive) {
         this.transactionId = transactionId;
@@ -46,7 +53,7 @@ public class Payment {
         return amountPaid;
     }
 
-    public String getPaymentMethod() {
+    public PaymentMethod getPaymentMethod () {
         return paymentMethod;
     }
 
@@ -83,7 +90,7 @@ public class Payment {
         this.amountPaid = amountPaid;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 

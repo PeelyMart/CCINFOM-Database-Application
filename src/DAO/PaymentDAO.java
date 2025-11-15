@@ -1,9 +1,10 @@
 package DAO;
 
+import Model.Payment;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-/*
+
 public class PaymentDAO {
 
     public boolean recordPayment(Payment payment) {
@@ -13,7 +14,7 @@ public class PaymentDAO {
 
             stmt.setInt(1, payment.getOrderId());
             stmt.setDouble(2, payment.getAmountPaid());
-            stmt.setString(3, payment.getPaymentMethod());
+            stmt.setString(3, payment.getPaymentMethod().name());
             stmt.setTimestamp(4, Timestamp.valueOf(payment.getPaymentDate()));
             stmt.setInt(5, payment.getStaffId());
 
@@ -56,7 +57,8 @@ public class PaymentDAO {
             if (rs.next()) {
                 int orderId = rs.getInt("order_id");
                 double amountPaid = rs.getDouble("amount_paid");
-                String paymentMethod = rs.getString("payment_method");
+                String paymentMethodStr = rs.getString("payment_method");
+                Payment.PaymentMethod paymentMethodEnum = Payment.PaymentMethod.valueOf(paymentMethodStr);
                 LocalDateTime paymentDate = rs.getTimestamp("payment_date").toLocalDateTime();
                 int staffId = rs.getInt("staff_id");
 
@@ -64,7 +66,7 @@ public class PaymentDAO {
                 String unknownCustomerName = rs.getString("unknown_customer_name");
                 boolean isActive = rs.getBoolean("is_active");
 
-                return new Payment(transactionId, orderId, amountPaid, paymentMethod, paymentDate,
+                return new Payment(transactionId, orderId, amountPaid, paymentMethodEnum, paymentDate,
                         staffId, loyalCustomerId, unknownCustomerName, isActive);
             }
         } catch (SQLException e) {
@@ -80,7 +82,7 @@ public class PaymentDAO {
 
             stmt.setInt(1, payment.getOrderId());
             stmt.setDouble(2, payment.getAmountPaid());
-            stmt.setString(3, payment.getPaymentMethod());
+            stmt.setString(3, payment.getPaymentMethod().name());
             stmt.setTimestamp(4, Timestamp.valueOf(payment.getPaymentDate()));
             stmt.setInt(5, payment.getStaffId());
 
@@ -132,7 +134,8 @@ public class PaymentDAO {
                 p.setTransactionId(rs.getInt("transaction_id"));
                 p.setOrderId(rs.getInt("order_id"));
                 p.setAmountPaid(rs.getDouble("amount_paid"));
-                p.setPaymentMethod(rs.getString("payment_method"));
+                String paymentMethodStr = rs.getString("payment_method");
+                Payment.PaymentMethod paymentMethodEnum = Payment.PaymentMethod.valueOf(paymentMethodStr);
                 p.setPaymentDate(rs.getTimestamp("payment_date").toLocalDateTime());
                 p.setStaffId(rs.getInt("staff_id"));
 
@@ -165,7 +168,8 @@ public class PaymentDAO {
                 p.setTransactionId(rs.getInt("transaction_id"));
                 p.setOrderId(rs.getInt("order_id"));
                 p.setAmountPaid(rs.getDouble("amount_paid"));
-                p.setPaymentMethod(rs.getString("payment_method"));
+                String paymentMethodStr = rs.getString("payment_method");
+                Payment.PaymentMethod paymentMethodEnum = Payment.PaymentMethod.valueOf(paymentMethodStr);
                 p.setPaymentDate(rs.getTimestamp("payment_date").toLocalDateTime());
                 p.setStaffId(rs.getInt("staff_id"));
 
@@ -183,4 +187,3 @@ public class PaymentDAO {
         return payments;
     }
 }
-*/
