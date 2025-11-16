@@ -101,10 +101,10 @@ public class MenuItemDAO {
                 MenuItem i = new MenuItem();
 
                 i.setMenuId(rs.getInt("menu_id"));
-                i.setMenuName(rs.getString("menu_name"));
+                i.setMenuName(rs.getString("name"));
                 i.setDescription(rs.getString("description"));
                 i.setPrice(rs.getDouble("price"));
-                i.setStatus(rs.getBoolean("status"));
+                i.setStatus(rs.getBoolean("is_available"));
 
                 menuItems.add(i);
             }

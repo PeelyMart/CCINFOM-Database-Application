@@ -17,7 +17,7 @@ public class OrderitemDAO {
      */
 
     public boolean addOrderItem(OrderItem orderItem) {
-        String sql = "INSERT INTO order_items (order_id, menu_id, quantity, subtotal, is_active) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO order_item (order_id, menu_id, quantity, subtotal, is_active) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -82,7 +82,7 @@ public class OrderitemDAO {
      * @param
      */
     public boolean updateOrderItem(OrderItem orderItem) {
-        String sql = "UPDATE order_items SET order_id = ?, menu_id = ?, quantity = ?, subtotal = ?, status = ? WHERE order_item_id = ?";
+        String sql = "UPDATE order_item SET order_id = ?, menu_id = ?, quantity = ?, subtotal = ?, is_active = ? WHERE order_item_id = ?";
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -103,7 +103,7 @@ public class OrderitemDAO {
     }
 
     public boolean deleteOrderItem(int orderItemId) {
-        String sql = "DELETE FROM order_items WHERE order_item_id = ?";
+        String sql = "DELETE FROM order_item WHERE order_item_id = ?";
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
