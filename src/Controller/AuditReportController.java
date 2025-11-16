@@ -12,7 +12,7 @@ import java.util.List;
 
 public class AuditReportController {
     
-    public void printAuditReportForSatff(int staffId) {
+    public void printAuditReportForStaff(int staffId) {
 
         // getting staff info 
         Staff staff = StaffDB.findById(staffId);
