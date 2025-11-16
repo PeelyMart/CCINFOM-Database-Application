@@ -47,7 +47,7 @@ public class TableDAO {
         return null; // insertion failed
     }
 
-    public static List<Table> getAllTable(){
+    public static List<Table> getAllTables(){
         String sql = "SELECT * FROM tables";
         List<Table> returnTable = new ArrayList<>();
         try(Connection conn = DB.getConnection();
@@ -69,8 +69,6 @@ public class TableDAO {
         }
         return returnTable;
     }
-
-
 
     public Table getTableById(int tableId) {
         String sql = "SELECT * FROM tables WHERE table_id = ?";
@@ -124,7 +122,7 @@ public class TableDAO {
         return false;
     }
 
-    public ArrayList<Table> getAllTables() {
+    /*public ArrayList<Table> getAllTables() {
         ArrayList<Table> tables = new ArrayList<>();
         String sql = "SELECT * FROM tables ORDER BY table_id";
 
@@ -148,5 +146,7 @@ public class TableDAO {
 
         return tables;
     }
+
+     */
 }
 

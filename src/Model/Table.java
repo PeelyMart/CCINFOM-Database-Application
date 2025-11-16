@@ -4,7 +4,7 @@ public class Table {
     // Private attributes
     private int tableId;
     private int capacity;
-    private boolean isAvailable;
+    public boolean isAvailable;
 
     // Constructors
 
@@ -46,4 +46,5 @@ public class Table {
     public void setTableStatus(boolean tableStatus) {
         this.isAvailable = tableStatus;
     }
+
 }

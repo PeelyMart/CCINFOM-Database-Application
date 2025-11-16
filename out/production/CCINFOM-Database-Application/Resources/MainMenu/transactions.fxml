@@ -33,11 +33,7 @@
         </Text>
 
         <!-- BUTTON (EXISTING) -->
-        <Button fx:id="oneButton" layoutX="48.0" layoutY="167.0" prefHeight="62.0" prefWidth="62.0" style="-fx-background-radius: 300;" stylesheets="@transactions.css" text="1" textFill="#280606">
-         <styleClass>
-            <String fx:value="table-button" />
-            <String fx:value="button" />
-         </styleClass></Button>
+
 
         <!-- FLOWPANE FOR TABLES -->
         <FlowPane fx:id="tableContainer" hgap="20" layoutX="46.0" layoutY="240.0" prefHeight="330" prefWidth="680" vgap="20" />

@@ -1,6 +1,7 @@
 package UserInterface;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -46,5 +47,31 @@ public class SceneNavigator {
         alert.setContentText(msg);
         alert.showAndWait();
     }
+
+    public static void switchNoButton(Stage stage, String fxmlPath, Object data) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource(fxmlPath));
+            Parent root = loader.load();
+
+            // Get controller
+            Object controller = loader.getController();
+
+            // If controller has setData(), call it
+            try {
+                controller.getClass().getMethod("setData", Object.class).invoke(controller, data);
+            } catch (NoSuchMethodException ignored) {
+                // controller doesn't have setData → ignore
+            }
+
+            // Switch scene
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

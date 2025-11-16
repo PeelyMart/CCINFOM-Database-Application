@@ -34,6 +34,7 @@ public class reservationsUI {
     }
 
     // ===================== ADD =====================
+    @FXML
     private void handleAdd() {
         TextInputDialog tableDialog = new TextInputDialog();
         tableDialog.setTitle("Add Reservation");
@@ -74,6 +75,7 @@ public class reservationsUI {
     }
 
     // ===================== SEARCH =====================
+    @FXML
     private void handleSearch() {
         String input = searchReservations.getText();
         int id;
@@ -100,6 +102,7 @@ public class reservationsUI {
     }
 
     // ===================== EDIT =====================
+    @FXML
     private void handleEdit() {
         String input = searchReservations.getText();
         int id;
@@ -129,6 +132,7 @@ public class reservationsUI {
     }
 
     // ===================== DELETE =====================
+    @FXML
     private void handleDelete() {
         String input = searchReservations.getText();
         int id;
