@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="596.0" prefWidth="968.0" style="-fx-background-color: #191f36;" styleClass="root" stylesheets="" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.DashboardUI">
+<AnchorPane prefHeight="596.0" prefWidth="968.0" styleClass="root" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.DashboardUI">
 
     <children>
 
@@ -18,7 +18,7 @@
                 <InnerShadow />
             </effect>
             <center>
-                <TextArea prefHeight="596.0" prefWidth="775.0" />
+                <TextArea fx:id="printGreeting" prefHeight="596.0" prefWidth="775.0" />
             </center>
         </BorderPane>
 
@@ -39,15 +39,13 @@
          <font>
             <Font size="17.0" />
          </font></Button>
-        <TextField layoutX="14.0" layoutY="27.0" prefHeight="27.0" prefWidth="190.0" promptText="cashier:" style="-fx-background-color: #282f47;">
+        <TextField fx:id="cashierField" layoutX="14.0" layoutY="27.0" prefHeight="27.0" prefWidth="190.0" promptText="cashier:" style="-fx-background-color: #282f47;">
          <font>
             <Font size="13.0" />
          </font></TextField>
-      <TextField layoutX="14.0" layoutY="63.0" prefHeight="27.0" prefWidth="190.0" promptText="time in:" style="-fx-background-color: #282f47;">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </TextField>
+        <TextField fx:id="timeInField" layoutX="14.0" layoutY="63.0" prefHeight="27.0" prefWidth="190.0" promptText="Time In" style="-fx-background-color: #282f47;" editable="false">
+            <font><Font size="13.0" /></font>
+        </TextField>
       <Text fill="WHITE" layoutX="57.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRANSACTIONS" textAlignment="CENTER">
          <font>
             <Font name="Verdana Bold" size="12.0" />

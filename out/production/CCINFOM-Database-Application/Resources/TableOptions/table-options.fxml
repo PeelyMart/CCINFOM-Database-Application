@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="698.0" style="-fx-background-color: #191f36;" styleClass="root" stylesheets="@../styleopt.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.TableOptionsUI">
+
+    <children>
+        <!-- HEADER PANEL -->
+        <Text fill="WHITE" layoutX="42.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="⛩ TABLE">
+            <font>
+                <Font name="Verdana Bold" size="47.0" />
+            </font>
+        </Text>
+
+        <Line endX="660.6" layoutX="70.0" layoutY="155.0" startX="-26.9" stroke="#343b7b" strokeWidth="2.0" />
+
+        <Label layoutX="262.0" layoutY="14.0" textFill="WHITE" />
+
+        <!-- ACTION BUTTONS -->
+        <Button fx:id="searchButton" layoutX="594.0" layoutY="23.0" mnemonicParsing="false" onAction="#searchButtonClick" prefHeight="64.0" prefWidth="90.0" text="🔍" textFill="WHITE">
+            <font><Font size="17.0" /></font>
+        </Button>
+
+        <Button fx:id="addButton" layoutX="599.0" layoutY="372.0" mnemonicParsing="false" onAction="#addButtonClick" prefHeight="64.0" prefWidth="79.0" text="➕" textFill="WHITE">
+            <font><Font size="26.0" /></font>
+        </Button>
+
+        <Button fx:id="removeButton" layoutX="464.0" layoutY="372.0" mnemonicParsing="false" onAction="#removeButtonClick" prefHeight="64.0" prefWidth="79.0" text="❌" textFill="WHITE">
+            <font><Font size="23.0" /></font>
+        </Button>
+
+        <Button fx:id="updateButton" layoutX="534.0" layoutY="372.0" mnemonicParsing="false" onAction="#updateButtonClick" prefHeight="62.0" prefWidth="79.0" text="🔔" textFill="WHITE">
+            <font><Font size="25.0" /></font>
+        </Button>
+
+        <!-- BACK BUTTON -->
+        <Button fx:id="backButton" layoutX="30.0" layoutY="382.0" onAction="#goBack" prefHeight="30.0" prefWidth="100.0" text="← BACK" textFill="WHITE" />
+
+        <!-- SEARCH FIELD -->
+        <TextField fx:id="searchField" layoutX="420.0" layoutY="42.0" onAction="#searchFieldEnter" prefHeight="26.0" prefWidth="193.0" promptText="Search tableID" style="-fx-background-color: #242d4e;" />
+
+        <!-- SCROLL AREA FOR TABLE ENTRIES -->
+        <ScrollPane fx:id="scrollPane" layoutX="35.0" layoutY="89.0" prefHeight="284.0" prefWidth="628.0">
+            <content>
+                <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="280.0" prefWidth="634.0" />
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

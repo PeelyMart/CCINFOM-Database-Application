@@ -1,0 +1,31 @@
+/* ROOT BACKGROUND */
+.root {
+    -fx-background-color: #191f36; /* dark main background */
+    -fx-background-image: url("file:C:/Users/skypa/OneDrive/Documents/GitHub/CCINFOM-Database-Application/src/Resources/bgwhite.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+/* BUTTONS */
+.button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #264381;            /* white text */
+    -fx-background-radius: 10;       /* rounded corners */
+    -fx-font-family: "Avenir Book";
+    -fx-font-size: 100px;
+    -fx-cursor: hand;                /* cursor changes on hover */
+}
+
+/* BUTTON HOVER EFFECT */
+.button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.15); /* slight highlight on hover */
+    -fx-border-color: transparent;     /* slightly lighter when hovered */
+}
+
+/* BUTTON PRESSED EFFECT */
+.button:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.15); /* slight highlight on hover */
+    -fx-border-color: transparent;   /* darker when clicked */
+}

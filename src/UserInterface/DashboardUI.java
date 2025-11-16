@@ -1,25 +1,39 @@
 package UserInterface;
 
 import Controller.UserService;
+import Model.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class DashboardUI {
 
-    private Stage mainStage;
+    @FXML
+    private TextField cashierField;
+
+    @FXML
+    private TextField timeInField;
 
     @FXML
     private BorderPane mainContent;
 
+    @FXML
+    private TextArea printGreeting;
+
+    private Stage mainStage;
+
     // ------------------------------
-    // Static method to open dashboard
+    // Open dashboard
     // ------------------------------
     public static void openDashboard(Stage mainStage) {
         try {
@@ -27,7 +41,7 @@ public class DashboardUI {
             Parent root = loader.load();
 
             DashboardUI controller = loader.getController();
-            controller.setMainStage(mainStage); // safely assign stage
+            controller.setMainStage(mainStage);
 
             Scene scene = new Scene(root);
             mainStage.setScene(scene);
@@ -40,10 +54,27 @@ public class DashboardUI {
     }
 
     // ------------------------------
-    // Assign mainStage safely
+    // Assign mainStage
     // ------------------------------
     public void setMainStage(Stage stage) {
         this.mainStage = stage;
+    }
+
+    // ------------------------------
+    // Initialize UI: cashier name + time-in
+    // ------------------------------
+    @FXML
+    private void initialize() {
+        Staff currentUser = UserService.getCurrentUser();
+        if (currentUser != null) {
+            cashierField.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
+            printGreeting.setText("Welcome, " + currentUser.getFirstName() + "!");
+        } else {
+            printGreeting.setText("Welcome!");
+        }
+
+        // Auto-set current time
+        timeInField.setText(LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
     }
 
     // ------------------------------
@@ -62,7 +93,7 @@ public class DashboardUI {
     @FXML
     private void handleLogout(ActionEvent event) {
         UserService.logOut();
-        // Optionally navigate to login after logout:
+        // Optionally go back to login:
         // LoginUI.openLogin(mainStage);
     }
 

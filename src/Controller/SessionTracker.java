@@ -15,6 +15,7 @@ public class SessionTracker {
     public static void startSession(Staff user){
         currentTracker = new StaffTracker(user.getStaffId());
         currentTracker.setTimeIn(LocalDateTime.now());
+        System.out.println("[LOCAL MODEL|UNSAVED] Session Started by:ID" + currentTracker.getStaffId() + "\nTime In: " + currentTracker.getTimeIn());
     }
 
     /*
@@ -32,8 +33,11 @@ public class SessionTracker {
 
     public static void endSession(){
         currentTracker.setTimeOut(LocalDateTime.now());
+        System.out.println("[LOCAL MODEL|UNSAVED] Session Started by:ID" + currentTracker.getStaffId() + "\nTime In: " + currentTracker.getTimeIn() + "\n Time out: " + currentTracker.getTimeOut());
         calculateMinutes();
+        System.out.println("Sending data to the database");
         StaffTrackDAO.uploadSession(currentTracker);
+        System.out.println("Successfully Uploaded Session Minutes: " );
         printSession(currentTracker);
         resetTracker();
     }
@@ -45,14 +49,14 @@ public class SessionTracker {
         }
 
         // Print header
-        System.out.printf("%-15s %-20s %-20s %-10s%n",
+        System.out.printf("%-15s %-20s \t %-20s \t %-10s%n",
                 "Staff ID", "Time In", "Time Out", "Minutes");
         System.out.println("===============================================================");
 
         // Print data
         String timeOut = tracker.getTimeOut() != null ? tracker.getTimeOut().toString() : "N/A";
 
-        System.out.printf("%-15d %-20s %-20s %-10d%n",
+        System.out.printf("%-15d %-20s \t %-20s \t %-10d%n",
                 tracker.getStaffId(),
                 tracker.getTimeIn(),
                 timeOut,

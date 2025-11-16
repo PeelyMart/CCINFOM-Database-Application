@@ -9,10 +9,7 @@ import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 public class PaymentControl {
-    /**
-     * @param currentOrder
-     * @return 1 - successful, 0 - unsuccessful, -1 - the bill was 0.00 early return
-     */
+
     public static int initiatePayment(Order currentOrder, int customerId){
         if(currentOrder.getTotalCost().equals(BigDecimal.valueOf(0.00))) {
             return -1;

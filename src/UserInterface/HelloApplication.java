@@ -13,9 +13,8 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Load main Pokedex UI directly
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/MainMenu/dashboard.fxml"));
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/MainMenu/dashboard.fxml"));
         AnchorPane root = loader.load();
 
         Scene scene = new Scene(root);
@@ -24,11 +23,10 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-
-
+         */
 
         // Load the login screen
-        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/Login/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/Login/login.fxml"));
         AnchorPane loginRoot = loader.load();
 
         Scene loginScene = new Scene(loginRoot);
@@ -46,10 +44,6 @@ public class HelloApplication extends Application {
         loginStage.show();
 
     }
-
-         */
-
-
 
     public static void main(String[] args) {
         launch();

@@ -52,6 +52,11 @@ public class LoginUI {
         loginButton.setOnAction(e -> handleLogin());
     }
 
+    public void setStages(Stage loginStage, Stage mainStage) {
+        this.loginStage = loginStage;
+        this.mainStage = mainStage;
+    }
+
     @FXML
     private void handleLogin() {
         int resultFlag = UserService.logIn(
