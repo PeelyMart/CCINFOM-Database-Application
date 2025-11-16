@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 public class ReportUI {
 
     @FXML
-    private Button salesButton, staffButton, loyaltyButton, menuButton;
+    private Button salesButton, staffButton, loyaltyButton, menuButton, backButton;
 
     @FXML
     private void initialize() {
@@ -22,6 +22,9 @@ public class ReportUI {
 
         if (menuButton != null)
             menuButton.setOnAction(e -> SceneNavigator.switchScene(menuButton, "/Resources/Reports/reports-view.fxml"));
+
+        if (backButton != null)
+            backButton.setOnAction(e -> SceneNavigator.switchScene(backButton, "/Resources/MainMenu/dashboard.fxml"));
 
     }
 

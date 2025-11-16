@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="398.0" prefWidth="570.0" styleClass="root" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.DashboardUI">
+
+    <children>
+        <TextField fx:id="cashierField" layoutX="106.0" layoutY="224.0" prefHeight="32.0" prefWidth="357.0" promptText="cashier:" style="-fx-background-color: #282f47;" text="logged out at: ">
+         <font>
+            <Font size="13.0" />
+         </font></TextField>
+      <Text fill="WHITE" layoutX="40.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THANK YOU FOR YOUR HARD WORK." textAlignment="CENTER" wrappingWidth="489.8299865722656">
+         <font>
+            <Font name="Verdana" size="49.0" />
+         </font>
+      </Text>
+      <Button layoutX="85.0" layoutY="264.0" mnemonicParsing="false" text="relogin" />
+      <Button layoutX="358.0" layoutY="264.0" mnemonicParsing="false" text="exit" />
+
+    </children>
+</AnchorPane>
