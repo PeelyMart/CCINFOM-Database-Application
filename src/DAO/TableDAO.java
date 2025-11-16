@@ -2,6 +2,8 @@ package DAO;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+
 import Model.Table;
 
 public class TableDAO {
@@ -43,6 +45,29 @@ public class TableDAO {
         }
 
         return null; // insertion failed
+    }
+
+    public static List<Table> getAllTable(){
+        String sql = "SELECT * FROM tables";
+        List<Table> returnTable = new ArrayList<>();
+        try(Connection conn = DB.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)){
+
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Table currTable = new Table(
+                        rs.getInt("table_id"),
+                        rs.getInt("capacity"),
+                        rs.getBoolean("is_available")
+                );
+                returnTable.add(currTable);
+            }
+            return returnTable;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return returnTable;
     }
 
 

@@ -15,13 +15,12 @@ public class Table {
         this.capacity = capacity;
         this.isAvailable = tableStatus;
     }
-/*
+
     public Table(int tableId, int capacity, boolean tableStatus) {
         this.tableId = tableId;
         this.capacity = capacity;
         this.isAvailable = tableStatus;
     }
-*/
     // Getters
     public int getTableId() {
         return tableId;
