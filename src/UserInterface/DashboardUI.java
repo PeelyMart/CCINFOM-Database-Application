@@ -104,8 +104,12 @@ public class DashboardUI {
     @FXML
     private void handleLogout(ActionEvent event) {
         UserService.logOut();
-        // Optionally go back to login:
-        // LoginUI.openLogin(mainStage);
+        // Navigate to logout screen
+        try {
+            loadContent("/Resources/MainMenu/logout.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

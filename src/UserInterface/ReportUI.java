@@ -8,10 +8,14 @@ import DAO.PaymentDAO;
 import DAO.StaffDB;
 import Model.Staff;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -106,9 +110,27 @@ public class ReportUI {
             loadSalesReport();
         });
         
-        // Back button
+        // Back button - go back to dashboard content area (not switch scene)
         if (backButton != null) {
-            backButton.setOnAction(e -> SceneNavigator.switchScene(backButton, "/Resources/MainMenu/dashboard.fxml"));
+            backButton.setOnAction(e -> {
+                Stage stage = (Stage) backButton.getScene().getWindow();
+                // Navigate back to dashboard
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Resources/MainMenu/dashboard.fxml"));
+                    Parent root = loader.load();
+                    
+                    DashboardUI controller = loader.getController();
+                    if (controller != null) {
+                        controller.setMainStage(stage);
+                    }
+                    
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
         }
         
         //<---trigger an update when two values are added-->//

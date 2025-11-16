@@ -36,7 +36,7 @@
 
 
         <!-- FLOWPANE FOR TABLES -->
-        <FlowPane fx:id="tableContainer" hgap="20" layoutX="46.0" layoutY="240.0" prefHeight="330" prefWidth="680" vgap="20" />
+        <FlowPane fx:id="tableContainer" hgap="30" layoutX="46.0" layoutY="240.0" prefHeight="330" prefWidth="680" vgap="20" />
     </children>
 
 </AnchorPane>
