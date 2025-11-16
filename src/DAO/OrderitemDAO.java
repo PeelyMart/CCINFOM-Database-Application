@@ -155,11 +155,15 @@ public class OrderitemDAO {
 
     public static Map<Integer, double[]> MenuSales(LocalDate start, LocalDate end) {
         Map<Integer, double[]> result = new LinkedHashMap<>();
-        String sql = "SELECT menu_id, SUM(quantity) AS total_qty, SUM(subtotal) AS total_amt " +
-                     "FROM order_items oi JOIN order_header oh ON oi.order_id = oh.order_id " +
-                     "WHERE oh.order_time BETWEEN ? AND ? " +
-                     "GROUP BY menu_id ORDER BY total_qty DESC;";
-                     
+
+        String sql = "SELECT oi.menu_id, " +
+                "SUM(oi.quantity) AS total_qty, " +
+                "SUM(oi.subtotal) AS total_amt " +
+                "FROM order_item oi " +
+                "JOIN order_header oh ON oi.order_id = oh.order_id " +
+                "WHERE oh.order_time BETWEEN ? AND ? " +
+                "GROUP BY oi.menu_id;";
+
         try (Connection conn = DB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -171,11 +175,13 @@ public class OrderitemDAO {
                 int menuId = rs.getInt("menu_id");
                 double qty = rs.getDouble("total_qty");
                 double amt = rs.getDouble("total_amt");
-                result.put(menuId, new double[] { qty, amt });
+                result.put(menuId, new double[]{ qty, amt });
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return result;
     }
 }
