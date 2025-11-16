@@ -6,6 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <AnchorPane prefHeight="464.0" prefWidth="646.0" style="-fx-background-color: #191f36;" styleClass="root" stylesheets="@../styleopt.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.ReportUI">
 
     <children>
@@ -44,15 +45,32 @@
 
         <!-- Dynamic content area -->
         <AnchorPane fx:id="contentArea" layoutX="36.0" layoutY="93.0" prefHeight="265.0" prefWidth="532.0" style="-fx-background-color: #222846;">
-         <children>
-             <!-- Hidden dropdown for Staff reports -->
-             <ComboBox fx:id="staffDropdown" layoutX="10.0" layoutY="10.0"
-                       prefWidth="200.0" visible="false" />
+            <children>
 
-             <TextArea fx:id="reportTextArea" layoutY="40.0"
-                       prefHeight="260.0" prefWidth="532.0" />
+                <!-- Dropdown for Staff report -->
+                <ComboBox fx:id="staffDropdown"
+                          layoutX="10.0" layoutY="10.0"
+                          prefWidth="200.0"
+                          visible="false" />
 
-         </children></AnchorPane>
+                <!-- Date pickers for Sales & Loyalty -->
+                <DatePicker fx:id="fromDatePicker"
+                            layoutX="10.0" layoutY="10.0"
+                            prefWidth="150.0"
+                            visible="false" />
+
+                <DatePicker fx:id="toDatePicker"
+                            layoutX="170.0" layoutY="10.0"
+                            prefWidth="150.0"
+                            visible="false" />
+
+                <TextArea fx:id="reportTextArea"
+                          layoutY="50.0"
+                          prefHeight="230.0"
+                          prefWidth="532.0" />
+
+            </children>
+        </AnchorPane>
 
               <!-- Buttons -->
 

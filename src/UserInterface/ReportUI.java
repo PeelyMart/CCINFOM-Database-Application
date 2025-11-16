@@ -1,14 +1,22 @@
 package UserInterface;
 
 import Controller.AuditReportController;
+import Controller.LoyaltyReportController;
+import Controller.MenuPerformanceController;
+import Controller.SalesReportController;
+import DAO.PaymentDAO;
 import DAO.StaffDB;
 import Model.Staff;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 public class ReportUI {
 
@@ -31,6 +39,16 @@ public class ReportUI {
     private ComboBox<String> staffDropdown;
 
     @FXML
+    private DatePicker fromDatePicker;
+
+    @FXML
+    private DatePicker toDatePicker;
+
+    private String activeReport = ""; // "sales" or "loyalty"
+
+
+
+    @FXML
     public void initialize() {
 
 
@@ -51,25 +69,58 @@ public class ReportUI {
 
 
         staffButton.setOnAction(e -> {
+            fromDatePicker.setVisible(false);
+            toDatePicker.setVisible(false);
             staffDropdown.setVisible(true);
-            reportTextArea.clear();  // optional
+            reportTextArea.clear();
+            loadStaffReport();
         });
 
 
         menuButton.setOnAction(e -> {
+            activeReport = "menu";
+            staffDropdown.setVisible(false);
+            fromDatePicker.setVisible(true);
+            toDatePicker.setVisible(true);
             staffDropdown.setVisible(false);
             reportTextArea.setText("MENU REPORT...");
         });
 
         loyaltyButton.setOnAction(e -> {
+            activeReport = "loyalty";
             staffDropdown.setVisible(false);
-            reportTextArea.setText("MENU REPORT...");
+            fromDatePicker.setVisible(true);
+            toDatePicker.setVisible(true);
+            reportTextArea.clear();
         });
 
         salesButton.setOnAction(e -> {
+            activeReport = "sales";
             staffDropdown.setVisible(false);
-            reportTextArea.setText("MENU REPORT...");
+            fromDatePicker.setVisible(true);
+            toDatePicker.setVisible(true);
+            reportTextArea.clear();
+            loadSalesReport();
         });
+        //<---trigger an update when two values are added-->//
+        fromDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> updateReport());
+        toDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> updateReport());
+    }
+
+    private void updateReport() {
+        if (fromDatePicker.getValue() == null || toDatePicker.getValue() == null) return;
+
+        switch (activeReport) {
+            case "sales":
+                loadSalesReport();
+                break;
+            case "loyalty":
+                loadLoyaltyReport(fromDatePicker.getValue(), toDatePicker.getValue());
+                break;
+            case "menu":
+                loadMenuReport(fromDatePicker.getValue(), toDatePicker.getValue());
+                break;
+        }
     }
 
     private void loadStaffReport() {
@@ -83,15 +134,18 @@ public class ReportUI {
 
     }
 
-    private void loadMenuReport() {
-        reportTextArea.setText("MENU REPORT:\n\n- Menu Item A\n- Menu Item B\n- Menu Item C");
+    private void loadMenuReport(LocalDate from, LocalDate to) {
+        MenuPerformanceController controller= new MenuPerformanceController();
+        reportTextArea.setText(controller.generateMenuPerformanceReport(from, to));
     }
 
-    private void loadLoyaltyReport() {
-        reportTextArea.setText("LOYALTY PROGRAM REPORT:\n\n- Member 1\n- Member 2\n- Member 3");
+    private void loadLoyaltyReport(LocalDate startMonth, LocalDate endMonth) {
+        LoyaltyReportController controller = new LoyaltyReportController();
+        Map<LocalDate, Integer> monthlyNewMembers = controller.getNewMembersByMonth(startMonth, endMonth);
+        reportTextArea.setText(LoyaltyReportController.generateMonthlyMembersReport(monthlyNewMembers));
     }
 
     private void loadSalesReport() {
-        reportTextArea.setText("SALES REPORT:\n\nTotal Sales: ₱50,000\nTransactions: 124");
+        reportTextArea.setText(SalesReportController.getTransactionReportAsString(PaymentDAO.getPaymentReport()));
     }
 }

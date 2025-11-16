@@ -20,6 +20,23 @@ public class SalesReportController {
 
    }
 
+    public static String getTransactionReportAsString(List<PaymentReport> list) {
+        StringBuilder sb = new StringBuilder();
+
+        if (!list.isEmpty()) {
+            for (PaymentReport row : list) {
+                sb.append("Payment Method: ").append(row.getType()).append("\n")
+                        .append("Transactions: ").append(row.getTransactions()).append("\n")
+                        .append("Total Processed: ").append(row.getTotal()).append("\n")
+                        .append("------------------------------------\n");
+            }
+        } else {
+            sb.append("No transaction data available.\n");
+        }
+
+        return sb.toString();
+    }
+
     // Example helpers to get start/end for day/month/year
     public static LocalDateTime getDayStart(int year, int month, int day) {
         return LocalDateTime.of(year, month, day, 0, 0);
