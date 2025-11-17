@@ -147,72 +147,80 @@ public class reservationsUI {
     // ===================== ADD =====================
     @FXML
     private void handleAdd() {
+        // Step 1: Load available tables
         List<Model.Table> allTables = DAO.TableDAO.getAllTables();
         if (allTables == null || allTables.isEmpty()) {
             SceneNavigator.showError("No tables available.");
             return;
         }
 
+        // Step 2: Create readable table labels
         List<String> tableOptions = new ArrayList<>();
         for (Model.Table table : allTables) {
             tableOptions.add("Table " + table.getTableId() + " (Capacity: " + table.getCapacity() + ")");
         }
 
+        // Step 3: Choose table
         ChoiceDialog<String> tableDialog = new ChoiceDialog<>(tableOptions.get(0), tableOptions);
         tableDialog.setTitle("Add Reservation");
         tableDialog.setHeaderText("Select Table:");
         tableDialog.setContentText("Choose a table:");
+
         Optional<String> tableResult = tableDialog.showAndWait();
+        if (!tableResult.isPresent()) return;
 
-        tableResult.ifPresent(selectedTable -> {
+        String selectedTableStr = tableResult.get();
 
-            int tableID = Integer.parseInt(selectedTable.split(" ")[1]);
-            final int finalTableID = tableID;
+        // --- NO REGEX --- simple split parsing ---
+        // Split "Table 5 (Capacity: 4)" into: "Table 5"
+        String beforeParen = selectedTableStr.split("\\(")[0].trim();
+        // beforeParen = "Table 5"
 
-            TextInputDialog nameDialog = new TextInputDialog();
-            nameDialog.setTitle("Add Reservation");
-            nameDialog.setHeaderText("Enter Customer Name:");
-            Optional<String> nameInput = nameDialog.showAndWait();
+        String[] tableWords = beforeParen.split(" ");
+        int tableID = Integer.parseInt(tableWords[1].trim());
+        final int finalTableID = tableID;
 
-            nameInput.ifPresent(name -> {
+        // Step 4: Input customer name
+        TextInputDialog nameDialog = new TextInputDialog();
+        nameDialog.setTitle("Add Reservation");
+        nameDialog.setHeaderText("Enter Customer Name:");
+        Optional<String> nameInput = nameDialog.showAndWait();
 
-                Dialog<Pair<LocalDate, LocalTime>> dateTimeDialog =
-                        createDateTimePickerDialog(LocalDate.now(), LocalTime.now().plusHours(1));
+        if (!nameInput.isPresent()) return;
+        String custName = nameInput.get();
 
-                dateTimeDialog.setTitle("Add Reservation");
-                dateTimeDialog.setHeaderText("Select Date and Time:");
+        // Step 5: Date + Time Picker Dialog (same as EDIT)
+        Dialog<Pair<LocalDate, LocalTime>> dateTimeDialog =
+                createDateTimePickerDialog(LocalDate.now(), LocalTime.now().plusHours(1));
 
-                Optional<Pair<LocalDate, LocalTime>> dateTimeResult = dateTimeDialog.showAndWait();
+        dateTimeDialog.setTitle("Add Reservation");
+        dateTimeDialog.setHeaderText("Select Date and Time:");
 
-                dateTimeResult.ifPresent(dateTime -> {
+        Optional<Pair<LocalDate, LocalTime>> dateTimeResult = dateTimeDialog.showAndWait();
+        if (!dateTimeResult.isPresent()) return;
 
-                    LocalDate date = dateTime.getKey();
-                    LocalTime time = dateTime.getValue();
-                    LocalDateTime dateTimeFinal = LocalDateTime.of(date, time);
+        LocalDate date = dateTimeResult.get().getKey();
+        LocalTime time = dateTimeResult.get().getValue();
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
 
-                    Reservations r = ReservationController.addReservation(
-                            finalTableID,
-                            name,
-                            dateTimeFinal
-                    );
+        // Step 6: Send to controller
+        Reservations r = ReservationController.addReservation(finalTableID, custName, dateTime);
 
-                    if (r != null) {
-                        SceneNavigator.showInfo(
-                                "Reservation created successfully!\n" +
-                                        "Reservation ID: " + r.getRequestId() + "\n" +
-                                        "Name: " + r.getReserveName() + "\n" +
-                                        "Table: " + r.getTableId() + "\n" +
-                                        "Time: " + r.getDateAndTime().format(DATE_FORMATTER)
-                        );
-                    } else {
-                        SceneNavigator.showError("Reservation creation failed. Please try again.");
-                    }
-                });
-            });
-        });
+        // Step 7: User feedback
+        if (r != null) {
+            SceneNavigator.showInfo(
+                    "Reservation created successfully!\n" +
+                            "Reservation ID: " + r.getRequestId() + "\n" +
+                            "Name: " + r.getReserveName() + "\n" +
+                            "Table: " + r.getTableId() + "\n" +
+                            "Time: " + r.getDateAndTime().format(DATE_FORMATTER)
+            );
+        } else {
+            SceneNavigator.showError("Reservation creation failed. Please try again.");
+        }
     }
 
-
+    // ===================== SEARCH =====================
     @FXML
     private void handleSearch() {
         String input = searchReservations.getText().trim();
@@ -282,6 +290,8 @@ public class reservationsUI {
     // ===================== EDIT =====================
     @FXML
     private void handleEdit() {
+
+        // Step 0: Get selected reservation
         ReservationDisplay selected = tableView.getSelectionModel().getSelectedItem();
         if (selected == null) {
             SceneNavigator.showError("Please select a reservation to edit.");
@@ -294,84 +304,101 @@ public class reservationsUI {
             return;
         }
 
-        // Get all tables for dropdown
+        // Step 1: Load all tables
         List<Model.Table> allTables = DAO.TableDAO.getAllTables();
         if (allTables == null || allTables.isEmpty()) {
             SceneNavigator.showError("No tables available.");
             return;
         }
 
+        // Step 2: Build choice list
         List<String> tableOptions = new ArrayList<>();
         int currentTableIndex = 0;
+
         for (int i = 0; i < allTables.size(); i++) {
-            Model.Table table = allTables.get(i);
-            tableOptions.add("Table " + table.getTableId() + " (Capacity: " + table.getCapacity() + ")");
-            if (table.getTableId() == reservation.getTableId()) {
+            Model.Table t = allTables.get(i);
+            tableOptions.add("Table " + t.getTableId() + " (Capacity: " + t.getCapacity() + ")");
+            if (t.getTableId() == reservation.getTableId()) {
                 currentTableIndex = i;
             }
         }
 
+        // Step 3: Ask for new table
         ChoiceDialog<String> tableDialog = new ChoiceDialog<>(tableOptions.get(currentTableIndex), tableOptions);
         tableDialog.setTitle("Edit Reservation");
         tableDialog.setHeaderText("Select Table:");
         tableDialog.setContentText("Choose a table:");
+
         Optional<String> tableResult = tableDialog.showAndWait();
+        if (!tableResult.isPresent()) return;
 
-        tableResult.ifPresent(selectedTable -> {
+        String selectedTableStr = tableResult.get();
 
-            int newTableID = Integer.parseInt(selectedTable.split(" ")[1]);
-            final int finalTableID = newTableID;
+        // 🚫 NO REGEX — SIMPLE CLEAN PARSING
+        // Format: "Table 5 (Capacity: X)"
 
-            TextInputDialog nameDialog = new TextInputDialog(reservation.getReserveName());
-            nameDialog.setTitle("Edit Reservation");
-            nameDialog.setHeaderText("Enter Customer Name:");
-            Optional<String> nameInput = nameDialog.showAndWait();
+        // Extract left part before the '('
+        String[] parts = selectedTableStr.split("\\(");
+        // parts[0] = "Table 5 "
 
-            nameInput.ifPresent(newName -> {
-                Dialog<Pair<LocalDate, LocalTime>> dateTimeDialog = createDateTimePickerDialog(
-                        reservation.getDateAndTime().toLocalDate(),
-                        reservation.getDateAndTime().toLocalTime()
-                );
-                dateTimeDialog.setTitle("Edit Reservation");
-                dateTimeDialog.setHeaderText("Select Date and Time:");
+        String[] tableWords = parts[0].trim().split(" ");
+        // ["Table", "5"]
 
-                Optional<Pair<LocalDate, LocalTime>> dateTimeResult = dateTimeDialog.showAndWait();
+        int newTableID = Integer.parseInt(tableWords[1].trim());
 
-                dateTimeResult.ifPresent(dateTime -> {
-                    LocalDate selectedDate = dateTime.getKey();
-                    LocalTime selectedTime = dateTime.getValue();
-                    LocalDateTime newTime = LocalDateTime.of(selectedDate, selectedTime);
+        // Step 4: Input customer name
+        TextInputDialog nameDialog = new TextInputDialog(reservation.getReserveName());
+        nameDialog.setTitle("Edit Reservation");
+        nameDialog.setHeaderText("Enter Customer Name:");
+        Optional<String> nameInput = nameDialog.showAndWait();
 
-                    ChoiceDialog<String> statusDialog = new ChoiceDialog<>(
-                            reservation.getIsActive() ? "Active" : "Inactive",
-                            "Active", "Inactive"
-                    );
-                    statusDialog.setTitle("Edit Reservation");
-                    statusDialog.setHeaderText("Select Status:");
-                    Optional<String> statusInput = statusDialog.showAndWait();
+        if (!nameInput.isPresent()) return;
+        String newName = nameInput.get();
 
-                    statusInput.ifPresent(statusStr -> {
-                        boolean isActive = "Active".equals(statusStr);
+        // Step 5: Date + Time Picker
+        Dialog<Pair<LocalDate, LocalTime>> dateTimeDialog = createDateTimePickerDialog(
+                reservation.getDateAndTime().toLocalDate(),
+                reservation.getDateAndTime().toLocalTime()
+        );
+        dateTimeDialog.setTitle("Edit Reservation");
+        dateTimeDialog.setHeaderText("Select Date and Time:");
 
-                        boolean success = ReservationController.editReservation(
-                                reservation.getRequestId(),
-                                finalTableID,
-                                newName,
-                                newTime,
-                                isActive
-                        );
+        Optional<Pair<LocalDate, LocalTime>> dateTimeResult = dateTimeDialog.showAndWait();
+        if (!dateTimeResult.isPresent()) return;
 
-                        if (success) {
-                            SceneNavigator.showInfo("Reservation " + reservation.getRequestId() + " updated successfully.");
-                        } else {
-                            SceneNavigator.showError("Update failed. Reservation may not exist.");
-                        }
-                    });
-                });
-            });
-        });
+        LocalDate newDate = dateTimeResult.get().getKey();
+        LocalTime newTime = dateTimeResult.get().getValue();
+        LocalDateTime newDateTime = LocalDateTime.of(newDate, newTime);
+
+        // Step 6: Status dialog
+        ChoiceDialog<String> statusDialog = new ChoiceDialog<>(
+                reservation.getIsActive() ? "Active" : "Inactive",
+                "Active", "Inactive"
+        );
+        statusDialog.setTitle("Edit Reservation");
+        statusDialog.setHeaderText("Select Status:");
+
+        Optional<String> statusResult = statusDialog.showAndWait();
+        if (!statusResult.isPresent()) return;
+
+        boolean isActive = statusResult.get().equals("Active");
+
+        // Step 7: Update reservation
+        boolean success = ReservationController.editReservation(
+                reservation.getRequestId(),
+                newTableID,
+                newName,
+                newDateTime,
+                isActive
+        );
+
+        // Step 8: Notify user
+        if (success) {
+            SceneNavigator.showInfo("Reservation " + reservation.getRequestId() + " updated successfully.");
+        } else {
+            SceneNavigator.showError("Update failed.");
+        }
     }
-
 
     // ===================== DELETE =====================
     @FXML

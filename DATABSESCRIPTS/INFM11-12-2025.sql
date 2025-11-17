@@ -1,5 +1,4 @@
 -- Create database
--- The script was forward engineered and the original script was lost
 CREATE DATABASE IF NOT EXISTS restaurantdb
   DEFAULT CHARACTER SET utf8mb4
   COLLATE utf8mb4_0900_ai_ci;
@@ -14,10 +13,17 @@ CREATE TABLE IF NOT EXISTS staff (
     staff_pin INT NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
-    contact_number VARCHAR(15) NOT NULL,
+    contact_number VARCHAR(11) NOT NULL,
     PRIMARY KEY (staff_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- Insert dummy staff data
+INSERT INTO staff (staff_pin, first_name, last_name, contact_number)
+VALUES
+    (1234, 'John', 'Doe', '09171234567'),
+    (5678, 'Jane', 'Smith', '09179876543'),
+    (9012, 'Michael', 'Brown', '09171239876'),
+    (3456, 'Emily', 'Davis', '09172345678');
 
 -- ----------------------
 -- Table: staff_tracker
