@@ -17,13 +17,6 @@ CREATE TABLE IF NOT EXISTS staff (
     PRIMARY KEY (staff_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Insert dummy staff data
-INSERT INTO staff (staff_pin, first_name, last_name, contact_number)
-VALUES
-    (1234, 'John', 'Doe', '09171234567'),
-    (5678, 'Jane', 'Smith', '09179876543'),
-    (9012, 'Michael', 'Brown', '09171239876'),
-    (3456, 'Emily', 'Davis', '09172345678');
 
 -- ----------------------
 -- Table: staff_tracker
@@ -56,7 +49,7 @@ CREATE TABLE IF NOT EXISTS loyalty_members (
     customer_id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
-    contact_number VARCHAR(10),
+    contact_number VARCHAR(15),
     join_date DATE DEFAULT NULL,
     points INT DEFAULT 0,
     is_active TINYINT(1) NOT NULL DEFAULT 1,
