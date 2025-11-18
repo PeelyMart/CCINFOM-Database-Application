@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS staff (
     last_name VARCHAR(50) NOT NULL,
     contact_number VARCHAR(11) NOT NULL,
     PRIMARY KEY (staff_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 
 -- ----------------------
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS tables (
     capacity INT NOT NULL,
     is_available TINYINT(1) NOT NULL DEFAULT 1,
     PRIMARY KEY (table_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- ----------------------
 -- Table: loyalty_members
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS loyalty_members (
     points INT DEFAULT 0,
     is_active TINYINT(1) NOT NULL DEFAULT 1,
     PRIMARY KEY (customer_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- ----------------------
 -- Table: menu_items
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS menu_items (
     price DECIMAL(10,2) NOT NULL,
     is_available TINYINT(1) NOT NULL DEFAULT 1,
     PRIMARY KEY (menu_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- ----------------------
 -- Table: order_header
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS order_header (
     PRIMARY KEY (order_id),
     FOREIGN KEY (table_id) REFERENCES tables(table_id),
     FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- ----------------------
 -- Table: order_item
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS order_item (
     PRIMARY KEY (order_item_id),
     FOREIGN KEY (order_id) REFERENCES order_header(order_id),
     FOREIGN KEY (menu_id) REFERENCES menu_items(menu_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- ----------------------
 -- Table: payments
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS payments (
     FOREIGN KEY (order_id) REFERENCES order_header(order_id),
     FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
     FOREIGN KEY (loyal_customer_id) REFERENCES loyalty_members(customer_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- ----------------------
 -- Table: reservations
@@ -128,5 +128,5 @@ CREATE TABLE IF NOT EXISTS reservations (
     is_active TINYINT(1) NOT NULL DEFAULT 1,
     PRIMARY KEY (request_id),
     FOREIGN KEY (table_id) REFERENCES tables(table_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
